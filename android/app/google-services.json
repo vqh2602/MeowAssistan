@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "18584699136",
+    "project_id": "meow-assistan",
+    "storage_bucket": "meow-assistan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18584699136:android:a5ae1b719d85c3959e73e5",
+        "android_client_info": {
+          "package_name": "com.vqh2602.meowassistan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18584699136-cicsuivgp7nunqvn79lsaueiq498s96s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoUaQif5y759-dLTD4DvwTEGWGT2nyPEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "18584699136-cicsuivgp7nunqvn79lsaueiq498s96s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "18584699136-eabtpirvkkegmho67pc1j16hpc387d25.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vqh2602.meowassistan"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
