@@ -2,25 +2,42 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:meowassistan/bloc/authentication_bloc.dart';
+import 'package:meowassistan/bloc/cat_bloc.dart';
 import 'package:meowassistan/bloc/login_bloc.dart';
-import 'package:meowassistan/bloc/register_bloc.dart';
 import 'package:meowassistan/bloc/user_bloc.dart';
+import 'package:meowassistan/models/hive_Models/database/cat_db.dart';
 import 'package:meowassistan/repository/userRepository.dart';
-import 'package:meowassistan/screen/catEmoij/catEmoijScreen.dart';
-import 'package:meowassistan/screen/home/homeControlScreen.dart';
+import 'package:meowassistan/screen/healCat/catScreen.dart';
+
 import 'package:meowassistan/screen/loginSignup/loginScreen.dart';
 import 'package:meowassistan/screen/loginSignup/registerScreen.dart';
-import 'package:meowassistan/screen/speechToCat/speechToCat.dart';
 import 'package:meowassistan/screen/splash/splashScreen.dart';
+import 'package:meowassistan/screen/utilities/utilitiesScreen.dart';
 import 'package:meowassistan/states/authencation_state.dart';
+import 'package:sizer/sizer.dart';
 
+
+import 'bloc/bmi_bloc.dart';
+import 'bloc/register_bloc.dart';
 import 'bloc/simple_bloc_observer.dart';
 import 'events/authencation_event.dart';
+import 'events/cat_event.dart';
 import 'firebase_options.dart';
+import 'models/hive_Models/bmi.dart';
+import 'models/hive_Models/cats.dart';
+import 'models/hive_Models/database/bmi_db.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter<Cat>(CatAdapter());
+  await Hive.openBox<Cat>("Catdb");
+  Hive.registerAdapter<BMI>(BMIAdapter());
+  await Hive.openBox<BMI>("BMIdb");
+
   MobileAds.instance.initialize();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -44,6 +61,12 @@ Future<void> main() async {
               BlocProvider<LoginBloc>(
                 create: (BuildContext context) => LoginBloc(userRepository: _userRepository),
               ),
+              BlocProvider<CatBloc>(
+                create: (BuildContext context) => CatBloc(catDatabase: CatDatabase()),
+              ),
+              BlocProvider<BMIBloc>(
+                create: (BuildContext context) => BMIBloc(bmiDatabase:BMIDatabase()),
+              ),
             ],
             child: MyApp(userRepository: _userRepository,),
           ));
@@ -59,7 +82,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final UserRepository? userRepository;
 
-  MyApp({Key? key,this.userRepository}) : super(key: key);
+  const MyApp({Key? key,this.userRepository}) : super(key: key);
 
   static const MaterialColor mcgpalette0 =
       MaterialColor(_mcgpalette0PrimaryValue, <int, Color>{
@@ -88,7 +111,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+
+    BlocProvider.of<CatBloc>(context).add(CatInitialEvent());
+    return Sizer(builder: (context, orientation, deviceType) => MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -107,7 +132,7 @@ class MyApp extends StatelessWidget {
         '/LoginScreen': (BuildContext context) => LoginScreen(),
         '/RegisterScreen': (BuildContext context) => RegisterScreen(),
       },
-      // home: SpeechToCatScreen(),
+     // home:  UtilitiesScreen(),
       home: BlocProvider(
         create: (context) => AuthenticationBloc(userRepository: userRepository!)
           ..add(AuthenticationEventStarted()),
@@ -137,7 +162,7 @@ class MyApp extends StatelessWidget {
           },
         ),
       ),
-    );
+    ));
   }
 }
 //

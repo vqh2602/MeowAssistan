@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meowassistan/repository/userRepository.dart';
 
 abstract class UserEvent extends Equatable{

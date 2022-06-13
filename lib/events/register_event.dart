@@ -15,7 +15,7 @@ class RegisterEventEmailChange extends RegisterEvent{
   @override
   String toString() {
     // TODO: implement toString
-    return "LogninEmailChange: ${email}";
+    return "LogninEmailChange: $email";
   }
 }
 
@@ -28,7 +28,7 @@ class RegisterEventPasswordChange extends RegisterEvent{
   @override
   String toString() {
     // TODO: implement toString
-    return "LogninPasswordChange: ${password}";
+    return "LogninPasswordChange: $password";
   }
 }
 

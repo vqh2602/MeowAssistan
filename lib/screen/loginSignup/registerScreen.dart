@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:meowassistan/bloc/register_bloc.dart';
-import 'package:meowassistan/events/authencation_event.dart';
 import 'package:meowassistan/events/register_event.dart';
-import 'package:meowassistan/screen/loginSignup/loginScreen.dart';
 import 'package:meowassistan/screen/loginSignup/registerStatus.dart';
-import 'package:meowassistan/screen/splash/splashScreen.dart';
 import 'package:meowassistan/states/register_state.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../Color/colors.dart';
-import '../../bloc/authentication_bloc.dart';
 import '../../repository/userRepository.dart';
 import '../../validators/validators.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 Color colorPinkFf758c(){
   return const Color(0xFFff9a9e);

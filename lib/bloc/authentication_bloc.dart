@@ -1,12 +1,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meowassistan/bloc/user_bloc.dart';
 import 'package:meowassistan/events/authencation_event.dart';
 import 'package:meowassistan/repository/userRepository.dart';
 import 'package:meowassistan/states/authencation_state.dart';
 
-import '../events/user_event.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {

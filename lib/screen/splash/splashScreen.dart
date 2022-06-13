@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../../Color/colors.dart';
-import '../../bloc/user_bloc.dart';
 import '../../repository/userRepository.dart';
 import '../home/homeScreen.dart';
 
@@ -42,7 +39,7 @@ class _MySplashScreen extends State<SplashScreen> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child:Container(
+          child:SizedBox(
             width: double.infinity,
             height: double.infinity,
             child:  Column(
@@ -77,7 +74,7 @@ class _MySplashScreen extends State<SplashScreen> {
                 SizedBox(
                   child: Column(
                     children: [
-                      Text('from',style: TextStyle(color: Colors.grey),),
+                      const Text('from',style: TextStyle(color: Colors.grey),),
                       Image.asset(
                         'acssets/images/logo/logo_vqh_apps.png',
                         width: 50,

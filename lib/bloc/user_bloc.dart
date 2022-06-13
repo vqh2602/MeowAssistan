@@ -1,4 +1,3 @@
-import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,15 +39,15 @@ void _onGetUser(
             // }, onError: (e) {
             //   return 'loi lay du lieu' as String;
             // });
-            final docRef =await db.collection("users").doc(user.email);
+            final docRef =db.collection("users").doc(user.email);
             await docRef.get().then(
                   (DocumentSnapshot doc) async {
                 final data = doc.data() as Map<String, dynamic>;
                 // ...
           userCustom = UserCustom(displayName: data["displayName"], email: user.email,catcoin: data["catcoin"], expirationDate: data["expirationDate"].toDate());
                         print("in customusser: ${userCustom.displayName}");
-                        await Future.delayed(Duration(seconds: 1));
-                        emit(UserStateSuccess(user: await userCustom));
+                        await Future.delayed(const Duration(seconds: 1));
+                        emit(UserStateSuccess(user: userCustom));
               },
               onError: (e) => print("Error getting document: $e"),
             );

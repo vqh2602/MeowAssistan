@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meowassistan/data/dataCatEmoij.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -47,10 +46,10 @@ class _MyCatEmojiScreen extends State<CatEmojiScreen>{
                 flex: 2,
                 child: Column(
                   children: [
-                    Padding(padding: EdgeInsets.all(5)),
+                    const Padding(padding: EdgeInsets.all(5)),
                     Image.asset('acssets/images/cats/catEmoij.png', fit: BoxFit.cover,width: double.infinity,),
-                    Padding(padding: EdgeInsets.all(5)),
-                    Text('Thể Hiện cảm xúc ',style: const TextStyle(
+                    const Padding(padding: EdgeInsets.all(5)),
+                    const Text('Thể Hiện cảm xúc ',style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
@@ -84,7 +83,7 @@ class _MyCatEmojiScreen extends State<CatEmojiScreen>{
                                 shadowColor: Colors.white,
                                 shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
-                                    Radius.circular(50.0),
+                                    Radius.circular(10.0),
                                   ),
                                 ),
                                 child: Center(
@@ -158,12 +157,12 @@ class _MyCatEmojiScreen extends State<CatEmojiScreen>{
             colorPinkFf758c(),
             colorPinkFf7eb3()
           ]),
-          child: Text(
+          child: const Text(
             "Ok",
             style: TextStyle(color: Colors.white, fontSize: 20,),
           ),
           onPressed: () => Navigator.pop(context),
-          color: Color.fromRGBO(0, 179, 134, 1.0),
+          color: const Color.fromRGBO(0, 179, 134, 1.0),
           radius: BorderRadius.circular(50.0),
         ),
       ],

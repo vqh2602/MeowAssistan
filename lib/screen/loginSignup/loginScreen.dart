@@ -9,7 +9,6 @@ import 'package:meowassistan/events/login_event.dart';
 import 'package:meowassistan/repository/userRepository.dart';
 import 'package:meowassistan/screen/loginSignup/registerScreen.dart';
 import 'package:meowassistan/states/login_state.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../Color/colors.dart';
 import '../../validators/validators.dart';
@@ -73,8 +72,7 @@ class _MyLoginScreen extends State<LoginScreen> {
             print('login fail');
             return _safeArea(loginState,'Tài khoản hoặc mật khẩu không đúng, \n hoặc không có kết nối mạng');
           } else if (loginState.isSuccess) {
-            BlocProvider.of<AuthenticationBloc>(context)
-                .add(AuthenticationEventLogin());
+            BlocProvider.of<AuthenticationBloc>(context).add(AuthenticationEventLogin());
             return LoginStatus(status: 1,userRepository: userRepository!,);
           } else {
             return _safeArea(loginState,'');
@@ -307,7 +305,7 @@ class _MyLoginScreen extends State<LoginScreen> {
 
   void _onLoginEmailAndPassword(){
 
-    print('nhạn mail va pass | isLoginButtonEnable: ${isLoginButtonEnable} | isPopUpdate: $isPopUpdate');
+    print('nhạn mail va pass | isLoginButtonEnable: $isLoginButtonEnable | isPopUpdate: $isPopUpdate');
     _loginBloc.add(LoginEventWithEmailAndPasswordPressed(email: textEditingControllerEmail.text,
     password: textEditingControllerPassword.text));
     // _userBloc.add(GetUser(user: null));

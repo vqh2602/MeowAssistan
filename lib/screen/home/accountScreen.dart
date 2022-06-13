@@ -1,13 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:lottie/lottie.dart';
-import 'package:meowassistan/bloc/login_bloc.dart';
-import 'package:meowassistan/main.dart';
 import 'package:meowassistan/screen/loginSignup/loginScreen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -46,6 +42,11 @@ class _MyAccountScreen extends State<AccountScreen> {
     _userBloc = BlocProvider.of<UserBloc>(context);
     _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
     _userBloc.add(GetUser(userRepository: userRepository!));
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -101,14 +102,14 @@ class _MyAccountScreen extends State<AccountScreen> {
                       AssetImage('acssets/images/cats/catAvatar.jpg'),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 20),
+                  margin: const EdgeInsets.only(left: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:<Widget> [
                       Text(
                         'Hello, $name',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Inter',
@@ -116,7 +117,7 @@ class _MyAccountScreen extends State<AccountScreen> {
                       ),
                       Text(
                         '$email',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 17,
                             fontFamily: 'Inter',
                             color: Colors.white),
@@ -258,26 +259,15 @@ class _MyAccountScreen extends State<AccountScreen> {
                               child: InkWell(
                                 onTap: () {
 
+                                  alertBuyCatCoin('Thông báo', 'Bạn có muốn mua dịch vụ này với giá 1000 catcoin?', catcoin,email,1000,24);
 
-
-                                  // int.tryParse('12345');
-                                  print('${catcoin.toInt()}');
-                                  (catcoin.toInt() > 999)
-                                      ? buyCatcoin(email, 1000, 24)
-                                      : ShowSnackbar();
-                                  // reload
-                                  // Go to Page2 after 5s.
-                                  Future.delayed(const Duration(seconds: 3), () {
-                                    context.read<UserBloc>().add(GetUser(
-                                        userRepository: userRepository!));
-                                  });
 
                                   //  Navigator.pushReplacement(
                                   //      context,
                                   //      MaterialPageRoute(
                                   //          builder: (BuildContext context) => super.widget)); //Recall the function again
                                 },
-                                child: buyCatCoin('acssets/images/cats/buy1day.png', '7 ngày', '1000'),
+                                child: buyCatCoin('acssets/images/cats/buy1day.png', '1 ngày', '1000','0%'),
                               ),
                             ),
                             Container(
@@ -289,24 +279,14 @@ class _MyAccountScreen extends State<AccountScreen> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  // int.tryParse('12345');
-                                  print('${catcoin.toInt()}');
-                                  (catcoin.toInt() > 5999)
-                                      ? buyCatcoin(email, 6000, 168)
-                                      : ShowSnackbar();
-                                  // reload
-                                  // Go to Page2 after 5s.
-                                  Future.delayed(const Duration(seconds: 3), () {
-                                    context.read<UserBloc>().add(GetUser(
-                                        userRepository: userRepository!));
-                                  });
+                                  alertBuyCatCoin('Thông báo', 'Bạn có muốn mua dịch vụ này với giá 6000 catcoin?', catcoin,email,6000,168);
 
                                   //  Navigator.pushReplacement(
                                   //      context,
                                   //      MaterialPageRoute(
                                   //          builder: (BuildContext context) => super.widget)); //Recall the function again
                                 },
-                                child: buyCatCoin('acssets/images/cats/buy7day.png', '7ngay', '6000'),
+                                child: buyCatCoin('acssets/images/cats/buy7day.png', '7ngay', '6000','15%'),
                               ),
                             ),
                             Container(
@@ -317,11 +297,11 @@ class _MyAccountScreen extends State<AccountScreen> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  alertBuyCatCoin('Thông báo', 'Bạn có muốn mua dịch vụ này với giá 23500 catcoin?', catcoin,email);
+                                  alertBuyCatCoin('Thông báo', 'Bạn có muốn mua dịch vụ này với giá 23500 catcoin?', catcoin,email,23500,750);
 
 
                                 },
-                                child: buyCatCoin('acssets/images/cats/buy30day.png', '30 days', '23500'),
+                                child: buyCatCoin('acssets/images/cats/buy30day.png', '30 days', '23500','30%'),
                               ),
                             ),
                           ],
@@ -334,7 +314,7 @@ class _MyAccountScreen extends State<AccountScreen> {
     );
   }
 
-  Widget buyCatCoin(String img,days,coin){
+  Widget buyCatCoin(String img,days,coin,tk){
     return Row(
       mainAxisAlignment:
       MainAxisAlignment.spaceAround,
@@ -356,7 +336,7 @@ class _MyAccountScreen extends State<AccountScreen> {
                 children: [
                   TextSpan(
                     text: "$coin ",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 17,
                         fontWeight:
                         FontWeight.bold),
@@ -386,7 +366,7 @@ class _MyAccountScreen extends State<AccountScreen> {
               //   child: Image.asset(name),
               // ),
               TextSpan(
-                text: "15%",
+                text: tk,
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.yellowAccent,
@@ -416,7 +396,7 @@ class _MyAccountScreen extends State<AccountScreen> {
         //     print("tim thay user: ${doc.id} => ${doc.data()["email"]}");
         //     catcoinnew = doc.data()["catcoin"] + catcoin;
 
-        final docRef = await db.collection("users").doc(email);
+        final docRef = db.collection("users").doc(email);
         await docRef.get().then(
           (DocumentSnapshot doc) async {
             final data = doc.data() as Map<String, dynamic>;
@@ -454,12 +434,12 @@ class _MyAccountScreen extends State<AccountScreen> {
   }
 
   void ShowSnackbar() {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text("Không đủ tiền"),
     ));
   }
 
-  void alertBuyCatCoin(String title, content, catcoin, email){
+  void alertBuyCatCoin(String title, content, catcoin, email, int catcoinbuy, int timehour){
 
     Alert(
       context: context,
@@ -468,22 +448,22 @@ class _MyAccountScreen extends State<AccountScreen> {
       image: Lottie.asset('acssets/iconAnimation/catOk.json'),
       buttons: [
         DialogButton(
-          child: Text(
+          child: const Text(
             "Huỷ",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () => Navigator.pop(context),
-          color: Color.fromRGBO(0, 179, 134, 1.0),
+          color: const Color.fromRGBO(0, 179, 134, 1.0),
         ),
         DialogButton(
-          child: Text(
+          child: const Text(
             "Mua",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
             print('${catcoin.toInt()}');
-            if(catcoin.toInt() > 23499){
-              buyCatcoin(email, 23500, 720);
+            if(catcoin.toInt() > catcoinbuy-1){
+              buyCatcoin(email, catcoinbuy, timehour);
               // reload
               // Go to Page2 after 5s.
               Future.delayed(const Duration(seconds: 3), () {
@@ -513,24 +493,26 @@ class _MyAccountScreen extends State<AccountScreen> {
       image: Lottie.asset('acssets/iconAnimation/catSad.json'),
       buttons: [
         DialogButton(
-          child: Text(
+          child: const Text(
             "Huỷ",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () => Navigator.pop(context),
-          color: Color.fromRGBO(0, 179, 134, 1.0),
+          color: const Color.fromRGBO(0, 179, 134, 1.0),
         ),
         DialogButton(
-          child: Text(
+          child: const Text(
             "Ok",
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(context,'/',(_) => false);
             context.read<AuthenticationBloc>().add(AuthenticationEventLogout());
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => LoginScreen(userRepository: userRepository,)));
+
+            // Navigator.pushReplacement(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => LoginScreen(userRepository: userRepository,)));
 
           },
           gradient: LinearGradient(colors: [

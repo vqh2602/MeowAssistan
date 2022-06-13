@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:lottie/lottie.dart';
@@ -109,15 +108,15 @@ class _MySpeechToCatScreen extends State<SpeechToCatScreen> {
                       flex: 2,
                       child: Column(
                         children: [
-                          Padding(padding: EdgeInsets.all(5)),
+                          const Padding(padding: EdgeInsets.all(5)),
                           Image.asset(
                             'acssets/images/cats/catTran.png',
                             fit: BoxFit.cover,
                             width: double.infinity,
                           ),
-                          Padding(padding: EdgeInsets.all(5)),
-                          Text('Phiên dịch ',
-                              style: const TextStyle(
+                          const Padding(padding: EdgeInsets.all(5)),
+                          const Text('Phiên dịch ',
+                              style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
@@ -205,7 +204,7 @@ class _MySpeechToCatScreen extends State<SpeechToCatScreen> {
                       ))
                 ],
               )
-            : Center(
+            : const Center(
                 child: Text(
                     'Bạn chưa đăng kí dịch vụ, vào vòng quay để kiếm thêm catcoin, vào trang tài khoản để gia hạn dịch vụ'),
               ),

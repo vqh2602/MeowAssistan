@@ -1,12 +1,9 @@
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meowassistan/events/login_event.dart';
 import 'package:meowassistan/events/register_event.dart';
 import 'package:meowassistan/repository/userRepository.dart';
-import 'package:meowassistan/states/login_state.dart';
 import 'package:meowassistan/states/register_state.dart';
 import 'package:meowassistan/validators/validators.dart';
 
@@ -28,7 +25,7 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>{
   void _onRegisterEventEmailChange(
       RegisterEventEmailChange event, Emitter emit) async {
     final registerState = state;
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     emit(registerState.cloneAndUpdate(isValidEmail: Validators.isValidEmailCheck(email: event.email)));
   }
 
@@ -36,7 +33,7 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>{
   void _onRegisterEventPasswordChange(
       RegisterEventPasswordChange event, Emitter emit) async {
     final registerState = state;
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     emit(registerState.cloneAndUpdate(isValidEmail: Validators.isValidPasswordCheck(password: event.password)));
   }
 

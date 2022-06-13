@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../Color/colors.dart';
@@ -106,7 +103,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
               //     print("tim thay user: ${doc.id} => ${doc.data()["email"]}");
               //     catcoinnew = doc.data()["catcoin"] + catcoin;
 
-              final docRef =await db.collection("users").doc(email);
+              final docRef =db.collection("users").doc(email);
               await docRef.get().then(
                     (DocumentSnapshot doc) async {
                   final data = doc.data() as Map<String, dynamic>;
@@ -180,7 +177,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                         children: [
                           Text(
                             'Bạn đã trúng: ${items[index]} ',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15),
@@ -196,7 +193,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                         ],
                       ),
                     )
-                  : Center(
+                  : const Center(
                       child: Text('Quay nào'),
                     ),
             ),
@@ -215,7 +212,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                           children: [
                             Text(
                               '$it ',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
@@ -283,7 +280,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                             print("đong quang cao som");
                           }
                         },
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'SPIN',
                             style: TextStyle(
@@ -294,7 +291,9 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                           ),
                         ),
                       );
-                    }else return Container();
+                    }else {
+                      return Container();
+                    }
                   }),
                 ))
           ],

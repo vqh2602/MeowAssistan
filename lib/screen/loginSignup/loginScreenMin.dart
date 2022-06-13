@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meowassistan/repository/userRepository.dart';
 import 'package:meowassistan/screen/splash/splashScreen.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginStatus extends StatefulWidget{
   late int status;
@@ -65,19 +63,20 @@ class _myLoginStatus extends State<LoginStatus>{
     //     ],
     //   ).show();
     // }
-    Future.delayed(const Duration(milliseconds: 2000), () {
+    Future.delayed(const Duration(milliseconds: 5000), () {
       // Navigator.of(context).pop();
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => SplashScreen(userRepository: widget.userRepository,)));
+      Navigator.pushNamedAndRemoveUntil(context,'/',(_) => false);
+    //   Navigator.pushReplacement(
+    //       context,
+    //       MaterialPageRoute(
+    //           builder: (BuildContext context) => SplashScreen(userRepository: widget.userRepository,)));
     },
     );
   }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return (status == 1 )? Center(child: Text('Đăng nhập thành công, sẽ từ trở về trang đăng nhập sau 5 giây'),) : Center(child: Text('Đăng kí thất bại'),);
+    return (status == 1 )? const Center(child: Text('Đăng nhập thành công, sẽ từ trở về trang đăng nhập sau 5 giây'),) : const Center(child: Text('Đăng kí thất bại'),);
   }
 
 }
