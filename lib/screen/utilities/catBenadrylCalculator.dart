@@ -10,6 +10,8 @@ import 'package:sizer/sizer.dart';
 import '../../Color/colors.dart';
 
 class CatBenadrylCalculator extends StatefulWidget {
+  const CatBenadrylCalculator({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -88,7 +90,7 @@ class _MyCatBenadrylCalculator extends State<CatBenadrylCalculator> {
                       autocorrect: false,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
-                        labelText: 'Nhập cân nặng',
+                        labelText: 'Nhập cân nặng (kg)',
                       ),
                     ),
                   ),

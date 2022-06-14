@@ -9,6 +9,7 @@ import 'package:meowassistan/screen/speechToCat/speechToCat.dart';
 import 'package:meowassistan/screen/utilities/utilitiesScreen.dart';
 import 'package:meowassistan/states/user_state.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../events/user_event.dart';
 import '../../repository/userRepository.dart';
@@ -428,7 +429,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                     onTap: (){
                       Navigator.push(context,
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return UtilitiesScreen();
+                            return UtilitiesScreen(vip: vip,);
                           }));
                     },
                     child: Container(
@@ -457,7 +458,13 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                             alignment: Alignment.centerRight,
                             child: Container(
                               margin: EdgeInsets.only(right: 40),
-                              child: Text('Danh sách các tiện ích'),
+                              child: Text('Danh sách các tiện ích',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Inter'
+                              ),),
                             ),
                           ),
                           Positioned(

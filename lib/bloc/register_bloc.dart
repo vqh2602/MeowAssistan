@@ -24,6 +24,7 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>{
 
   void _onRegisterEventEmailChange(
       RegisterEventEmailChange event, Emitter emit) async {
+    emit(RegisterEventEmailInit());
     final registerState = state;
     await Future.delayed(const Duration(seconds: 1));
     emit(registerState.cloneAndUpdate(isValidEmail: Validators.isValidEmailCheck(email: event.email)));
@@ -32,6 +33,7 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>{
 
   void _onRegisterEventPasswordChange(
       RegisterEventPasswordChange event, Emitter emit) async {
+    emit(RegisterEventEmailInit());
     final registerState = state;
     await Future.delayed(const Duration(seconds: 1));
     emit(registerState.cloneAndUpdate(isValidEmail: Validators.isValidPasswordCheck(password: event.password)));

@@ -38,6 +38,7 @@ void _onLoginEventPasswordChange(
 
 void _onLoginEventWithEmailAndPasswordPressed(
     LoginEventWithEmailAndPasswordPressed event, Emitter emit) async {
+    emit(LoginState.initial());
     try{
       await userRepository.signInWithEmailAnPassword(event.email, event.password);
       // print('usser: ${await userRepository.getUser()}');

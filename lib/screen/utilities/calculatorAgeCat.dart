@@ -10,6 +10,8 @@ import 'package:sizer/sizer.dart';
 import '../../Color/colors.dart';
 
 class CalculatorAgeCat extends StatefulWidget {
+  const CalculatorAgeCat({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -56,7 +58,7 @@ class _MyCalculatorAgeCat extends State<CalculatorAgeCat> {
                             color: colorPinkFf758c(),
                             borderRadius: BorderRadius.circular(50)),
                         child: const Text(
-                          'Ngay Sinh của méo',
+                          'Ngày sinh của mèo',
                           style: TextStyle(
                               fontSize: 17,
                               fontFamily: 'Inter',

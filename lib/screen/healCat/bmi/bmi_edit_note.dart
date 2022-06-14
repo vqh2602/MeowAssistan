@@ -72,7 +72,7 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                                 color: colorPinkFf758c(),
                                 borderRadius: BorderRadius.circular(50)),
                             child: const Text(
-                              'Ngay thêm',
+                              'Ngày thêm',
                               style: TextStyle(
                                   fontSize: 17,
                                   fontFamily: 'Inter',
@@ -129,7 +129,7 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                                 color: colorPinkFf758c(),
                                 borderRadius: BorderRadius.circular(50)),
                             child: const Text(
-                              'Bán Kính:',
+                              'Bán Kính (cm)',
                               style: TextStyle(
                                   fontSize: 17,
                                   fontFamily: 'Inter',
@@ -138,6 +138,7 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                           ),
                           TextFormField(
                             controller: _textcontrolr,
+                            keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                                 // labelText: 'Cat Name',
                                 // enabledBorder: OutlineInputBorder(
@@ -170,7 +171,7 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                                 color: colorPinkFf758c(),
                                 borderRadius: BorderRadius.circular(50)),
                             child: const Text(
-                              'Chiều Dài:',
+                              'Chiều Dài (cm)',
                               style: TextStyle(
                                   fontSize: 17,
                                   fontFamily: 'Inter',
@@ -179,6 +180,7 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                           ),
                           TextFormField(
                             controller: _textcontrolh,
+                            keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                                 // labelText: 'Cat Name',
                                 // enabledBorder: OutlineInputBorder(
@@ -238,7 +240,7 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                             }
                           },
                           child:
-                              widget.newNote ? const Text('Create') : const Text('UpDate'),
+                              widget.newNote ? const Text('Tạo') : const Text('Cập nhật'),
                         ),
                       ),
                     ],

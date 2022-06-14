@@ -252,38 +252,41 @@ class _MyEditCatScreen extends State<EditCatScreen> {
                                           color: Colors.white),
                                     ),
                                   ),
-                                  SizedBox(
+                                  Container(
+                                    margin: EdgeInsets.only(top: 10),
                                     width: double.infinity,
-                                    child: DropdownButton<String>(
-                                      // isExpanded: true,
-                                      value: dropdownImage,
-                                      // icon: Icon(Icons.arrow_drop_down_outlined, color: colorPinkFf758c(),),
-                                      style:
-                                          TextStyle(color: colorPinkFf758c()),
-                                      underline: Container(
-                                        height: 0,
-                                        color: colorPinkFf758c(),
+                                    child: Center(
+                                      child: DropdownButton<String>(
+                                        // isExpanded: true,
+                                        value: dropdownImage,
+                                        // icon: Icon(Icons.arrow_drop_down_outlined, color: colorPinkFf758c(),),
+                                        style:
+                                        TextStyle(color: colorPinkFf758c()),
+                                        underline: Container(
+                                          height: 0,
+                                          color: colorPinkFf758c(),
+                                        ),
+                                        onChanged: (newValue) {
+                                          setState(() {
+                                            dropdownImage = newValue.toString();
+                                          });
+                                        },
+                                        items: listCatAvatar.map((value) {
+                                          return DropdownMenuItem(
+                                            value: value,
+                                            child: Row(
+                                              children: [
+                                                Image.asset(
+                                                  'acssets/images/cats/$value',
+                                                  width: 100,
+                                                  height: 100,
+                                                ),
+                                                Text(value)
+                                              ],
+                                            ),
+                                          );
+                                        }).toList(),
                                       ),
-                                      onChanged: (newValue) {
-                                        setState(() {
-                                          dropdownImage = newValue.toString();
-                                        });
-                                      },
-                                      items: listCatAvatar.map((value) {
-                                        return DropdownMenuItem(
-                                          value: value,
-                                          child: Row(
-                                            children: [
-                                              Image.asset(
-                                                'acssets/images/cats/$value',
-                                                width: 100,
-                                                height: 100,
-                                              ),
-                                              Text(value)
-                                            ],
-                                          ),
-                                        );
-                                      }).toList(),
                                     ),
                                   ),
                                 ],
@@ -330,7 +333,7 @@ class _MyEditCatScreen extends State<EditCatScreen> {
                                       Navigator.pop(context);
                                     }
                                   },
-                                  child: widget.newNote?const Text('Create'):const Text('UpDate'),
+                                  child: widget.newNote?const Text('Tạo'):const Text('Cập nhật'),
                                 ),
                               ),
                             ],

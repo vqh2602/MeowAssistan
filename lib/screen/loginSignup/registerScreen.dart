@@ -347,7 +347,7 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                             Navigator.of(context).pop();
                           },
                           child: Text(
-                            'Sign up',
+                            'Sign in',
                             style: TextStyle(
                                 color: colorPinkFf758c(),
                                 fontSize: 17,

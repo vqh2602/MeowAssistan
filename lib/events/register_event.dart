@@ -6,6 +6,7 @@ abstract class RegisterEvent extends Equatable{
   List<Object?> get props => [];
 }
 
+class RegisterEventEmailInit extends RegisterEvent{}
 class RegisterEventEmailChange extends RegisterEvent{
   final String email;
   RegisterEventEmailChange({required this.email});

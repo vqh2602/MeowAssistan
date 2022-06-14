@@ -37,6 +37,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
     super.initState();
     _userBloc = BlocProvider.of<UserBloc>(context);
     _userBloc.add(GetUser(userRepository: userRepository!));
+    createRewardedAd();
 
     print('init');
   }
@@ -258,7 +259,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
 
                           // createInterstitialAd();
                           // showInterstitialAd();
-                          createRewardedAd();
+                          //createRewardedAd();
                           if( showRewardedAd()){
                             setState(() {
                               // Here you can write your code for open new view

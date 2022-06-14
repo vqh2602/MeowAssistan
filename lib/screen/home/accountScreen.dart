@@ -286,7 +286,7 @@ class _MyAccountScreen extends State<AccountScreen> {
                                   //      MaterialPageRoute(
                                   //          builder: (BuildContext context) => super.widget)); //Recall the function again
                                 },
-                                child: buyCatCoin('acssets/images/cats/buy7day.png', '7ngay', '6000','15%'),
+                                child: buyCatCoin('acssets/images/cats/buy7day.png', '7 ngày', '6000','15%'),
                               ),
                             ),
                             Container(
@@ -301,7 +301,7 @@ class _MyAccountScreen extends State<AccountScreen> {
 
 
                                 },
-                                child: buyCatCoin('acssets/images/cats/buy30day.png', '30 days', '23500','30%'),
+                                child: buyCatCoin('acssets/images/cats/buy30day.png', '30 ngày', '23500','30%'),
                               ),
                             ),
                           ],
@@ -469,6 +469,7 @@ class _MyAccountScreen extends State<AccountScreen> {
               Future.delayed(const Duration(seconds: 3), () {
                 context.read<UserBloc>().add(GetUser(
                     userRepository: userRepository!));
+                Navigator.pop(context);
               });
             }else{
               Navigator.pop(context);
@@ -506,9 +507,13 @@ class _MyAccountScreen extends State<AccountScreen> {
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context,'/',(_) => false);
             context.read<AuthenticationBloc>().add(AuthenticationEventLogout());
+            Future.delayed(Duration(seconds: 2), () {
 
+              Navigator.pushNamedAndRemoveUntil(context,'/',(_) => false);
+            });
+            //Navigator.pushNamedAndRemoveUntil(context,'/',(_) => false);
+            // Navigator.of(context).pushNamedAndRemoveUntil('/routeName', (route) => false);
             // Navigator.pushReplacement(
             //     context,
             //     MaterialPageRoute(

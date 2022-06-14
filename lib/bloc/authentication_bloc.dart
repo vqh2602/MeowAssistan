@@ -19,6 +19,7 @@ class AuthenticationBloc
 
   void _onAuthenticationEventStarted(
       AuthenticationEventStarted event, Emitter emit) async {
+    emit(AuthenticationStateInitial());
     final isSignedIn = await userRepository.isSignIn();
     if (isSignedIn) {
       User? user = await userRepository.getUser();
@@ -30,12 +31,14 @@ class AuthenticationBloc
 
   void _onAuthenticationEventLogin(
       AuthenticationEventLogin event, Emitter emit) async {
+    emit(AuthenticationStateInitial());
     User? user = await userRepository.getUser();
     emit(AuthenticationStateSuccess(user: user));
   }
 
   void _onAuthenticationEventLogout(
       AuthenticationEventLogout event, Emitter emit) async {
+    emit(AuthenticationStateInitial());
     userRepository.signOut();
     emit(AuthenticationStateFailure());
   }
