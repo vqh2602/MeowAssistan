@@ -1,6 +1,6 @@
 # meowassistan
 
-Flutter project.
+Flutter project. (ứng dụng vẫn đang hoàn hiện 70/ 100 %)
 
 ##
 - ngôn ngữ sử dụng: Flutter - Dart, kết hợp FireBase, Bloc, Hive
