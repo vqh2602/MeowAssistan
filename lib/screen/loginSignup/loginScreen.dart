@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
@@ -9,6 +10,7 @@ import 'package:meowassistan/events/login_event.dart';
 import 'package:meowassistan/repository/userRepository.dart';
 import 'package:meowassistan/screen/loginSignup/registerScreen.dart';
 import 'package:meowassistan/states/login_state.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Color/colors.dart';
 import '../../validators/validators.dart';
@@ -159,9 +161,9 @@ class _MyLoginScreen extends State<LoginScreen> {
                               AutovalidateMode.onUserInteraction,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter email.';
+                                  return 'email_check_null'.tr();
                                 } else if (!isValidEmail(value)) {
-                                  return 'Please use the @ email.';
+                                  return 'email_check'.tr();
                                 }
                                 return null;
                               },
@@ -176,7 +178,7 @@ class _MyLoginScreen extends State<LoginScreen> {
                                 focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                         color: colorPinkFf758c())),
-                                labelText: 'Enter your email',
+                                labelText: 'input_email'.tr(),
                               ),
                             ),
                           ),
@@ -191,13 +193,13 @@ class _MyLoginScreen extends State<LoginScreen> {
                               validator: (_) {
                                 return loginState.isValidPassword
                                     ? null
-                                    : 'Email sai định dạng';
+                                    : 'email_check_null'.tr();
                               },
-                              decoration: const InputDecoration(
+                              decoration:InputDecoration(
                                 prefixIcon:
                                 Icon(Ionicons.lock_closed_outline),
                                 border: UnderlineInputBorder(),
-                                labelText: 'Enter your password',
+                                labelText:'input_pass'.tr(),
                               ),
                             ),
                           ),
@@ -224,7 +226,7 @@ class _MyLoginScreen extends State<LoginScreen> {
                                     _onLoginEmailAndPassword();
                                   },
                                   child: SizedBox(
-                                    width: 170,
+                                    width: MediaQuery.of(context).size.width - 150,
                                     child: Padding(
                                       padding: const EdgeInsets.all(15),
                                       child: Row(
@@ -232,15 +234,15 @@ class _MyLoginScreen extends State<LoginScreen> {
                                         MainAxisAlignment.center,
                                         crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                        children: const [
+                                        children:[
                                           Text(
-                                            'LOGIN ',
+                                            'login',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 25),
-                                          ),
+                                                fontSize: 15.sp),
+                                          ).tr(),
                                           Icon(
                                             Ionicons.arrow_forward_outline,
                                             color: Colors.white,
@@ -264,13 +266,13 @@ class _MyLoginScreen extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Dont have an account?',
+                          'create_acc',
                           style: TextStyle(
                             color: colorB3B3B3(),
                             fontSize: 17,
                             fontFamily: 'Inter',
                           ),
-                        ),
+                        ).tr(),
                         TextButton(
                             onPressed: () {
                               // Navigator.pushNamed(
@@ -288,13 +290,13 @@ class _MyLoginScreen extends State<LoginScreen> {
                               );
                             },
                             child: Text(
-                              'Sign up',
+                              'sign_up',
                               style: TextStyle(
                                   color: colorPinkFf758c(),
                                   fontSize: 17,
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w700),
-                            ))
+                            ).tr())
                       ],
                     ))
               ],

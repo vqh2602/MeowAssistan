@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,12 +91,12 @@ class _MyEditCatScreen extends State<EditCatScreen> {
                                         borderRadius:
                                             BorderRadius.circular(50)),
                                     child: const Text(
-                                      'Cat name',
+                                      'cat_name',
                                       style: TextStyle(
                                           fontSize: 17,
                                           fontFamily: 'Inter',
                                           color: Colors.white),
-                                    ),
+                                    ).tr(),
                                   ),
                                   TextFormField(
                                     controller: _textcontrol,
@@ -114,7 +115,7 @@ class _MyEditCatScreen extends State<EditCatScreen> {
                                     // The validator receives the text that the user has entered.
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter some text';
+                                        return 'email_check_null'.tr();
                                       }
                                       return null;
                                     },
@@ -132,12 +133,12 @@ class _MyEditCatScreen extends State<EditCatScreen> {
                                         borderRadius:
                                             BorderRadius.circular(50)),
                                     child: const Text(
-                                      'Ngay Sinh',
+                                      'sinh_nhat',
                                       style: TextStyle(
                                           fontSize: 17,
                                           fontFamily: 'Inter',
                                           color: Colors.white),
-                                    ),
+                                    ).tr(namedArgs: {'sinhnhat':''}),
                                   ),
                                   Container(
                                     width: double.infinity,
@@ -192,12 +193,12 @@ class _MyEditCatScreen extends State<EditCatScreen> {
                                         borderRadius:
                                             BorderRadius.circular(50)),
                                     child: const Text(
-                                      'Gioi tinh',
+                                      'gioi_tinh',
                                       style: TextStyle(
                                           fontSize: 17,
                                           fontFamily: 'Inter',
                                           color: Colors.white),
-                                    ),
+                                    ).tr(),
                                   ),
                                   SizedBox(
                                     width: double.infinity,
@@ -333,7 +334,7 @@ class _MyEditCatScreen extends State<EditCatScreen> {
                                       Navigator.pop(context);
                                     }
                                   },
-                                  child: widget.newNote?const Text('Tạo'):const Text('Cập nhật'),
+                                  child: widget.newNote?const Text('create').tr():const Text('update').tr(),
                                 ),
                               ),
                             ],

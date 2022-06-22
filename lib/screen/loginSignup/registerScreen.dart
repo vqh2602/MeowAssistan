@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
@@ -169,7 +170,7 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                             AutovalidateMode.onUserInteraction,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter display name';
+                                return 'displayName_check_null'.tr();
                               } else {
                                 return null;
                               }
@@ -186,7 +187,7 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                               focusedBorder: UnderlineInputBorder(
                                   borderSide:
                                   BorderSide(color: colorPinkFf758c())),
-                              labelText: 'Enter your displayName',
+                              labelText: 'displayName'.tr(),
                             ),
                           ),
                         ),
@@ -201,9 +202,9 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                             AutovalidateMode.onUserInteraction,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter email.';
+                                return 'email_check_null'.tr();
                               } else if (!isValidEmail(value)) {
-                                return 'Please use the @ email.';
+                                return 'email_check'.tr();
                               }
                               return null;
                             },
@@ -218,7 +219,7 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                               focusedBorder: UnderlineInputBorder(
                                   borderSide:
                                   BorderSide(color: colorPinkFf758c())),
-                              labelText: 'Enter your email',
+                              labelText: 'input_email'.tr(),
                             ),
                           ),
                         ),
@@ -234,16 +235,16 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                             AutovalidateMode.onUserInteraction,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter password.';
+                                return 'pass_check_null'.tr();
                               } else if (!isValidPass(value)) {
-                                return 'Please use 8 .';
+                                return 'pass_check_val'.tr();
                               }
                               return null;
                             },
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               prefixIcon: Icon(Ionicons.lock_closed_outline),
                               border: UnderlineInputBorder(),
-                              labelText: 'Enter your password',
+                              labelText: 'input_pass'.tr(),
                             ),
                           ),
                         ),
@@ -256,16 +257,16 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                             AutovalidateMode.onUserInteraction,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter password.';
+                                return 'pass_check_null'.tr();
                               } else if (value != textEditingControllerPassword.text) {
-                                return 'not match';
+                                return 'pass_check_pass'.tr();
                               }
                               return null;
                             },
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               prefixIcon: Icon(Icons.password),
                               border: UnderlineInputBorder(),
-                              labelText: 'Confirm password',
+                              labelText: 'confirm_pass'.tr(),
                             ),
                           ),
                         ),
@@ -299,15 +300,15 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment:
                                       CrossAxisAlignment.center,
-                                      children: const [
+                                      children:[
                                         Text(
-                                          'REGISTER ',
+                                          'register',
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
                                               fontSize: 25),
-                                        ),
+                                        ).tr(),
                                         Icon(
                                           Ionicons.arrow_forward_outline,
                                           color: Colors.white,
@@ -331,13 +332,13 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Dont have an account?',
+                        'create_acc_done',
                         style: TextStyle(
                           color: colorB3B3B3(),
                           fontSize: 17,
                           fontFamily: 'Inter',
                         ),
-                      ),
+                      ).tr(),
                       TextButton(
                           onPressed: () {
                             // Navigator.pushNamed(
@@ -347,13 +348,13 @@ class _MyRegisterScreen extends State<RegisterScreen> {
                             Navigator.of(context).pop();
                           },
                           child: Text(
-                            'Sign in',
+                            'sign_in',
                             style: TextStyle(
                                 color: colorPinkFf758c(),
                                 fontSize: 17,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w700),
-                          ))
+                          ).tr())
                     ],
                   ))
             ],

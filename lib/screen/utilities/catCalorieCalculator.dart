@@ -47,111 +47,120 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
     // TODO: implement build
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Card(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              height: 35.h,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: InkWell(
-                            onTap: () {
-                              alertInfo();
-                            },
-                            child: Icon(
-                              Icons.info_outline,
-                              color: colorPinkFf758c(),
-                              size: 35,
-                            )),
-                      )),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 5, bottom: 5),
-                    decoration: BoxDecoration(
-                        color: colorPinkFf758c(),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: const Text(
-                      'Cân nặng',
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontFamily: 'Inter',
-                          color: Colors.white),
-                    ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          //                   <--- left side
-                          color: Colors.grey,
-                          width: 1.0,
-                        ),
+        child: Container(
+          decoration: BoxDecoration(
+            image:DecorationImage(
+              image: AssetImage("acssets/images/cats/bgCat3.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child:  Center(
+            child: Card(
+              child: Container(
+                padding: EdgeInsets.all(20),
+                height: 35.h,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: InkWell(
+                              onTap: () {
+                                alertInfo();
+                              },
+                              child: Icon(
+                                Icons.info_outline,
+                                color: colorPinkFf758c(),
+                                size: 35,
+                              )),
+                        )),
+                    Container(
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, top: 5, bottom: 5),
+                      decoration: BoxDecoration(
+                          color: colorPinkFf758c(),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: const Text(
+                        'Cân nặng',
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontFamily: 'Inter',
+                            color: Colors.white),
                       ),
                     ),
-                    child: TextField(
-                      controller: textEditingControlleNumber,
-                      keyboardType: TextInputType.number,
-                      autocorrect: false,
-                      decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                        labelText: 'Nhập cân nặng (kg)',
-                      ),
-                    ),
-                  ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        width: double.infinity,
-                        child: Center(
-                          child: DropdownButton<String>(
-                            // isExpanded: true,
-                            value: dropdownImage,
-                            // icon: Icon(Icons.arrow_drop_down_outlined, color: colorPinkFf758c(),),
-                            style:
-                            TextStyle(color: colorPinkFf758c()),
-                            underline: Container(
-                              height: 0,
-                              color: colorPinkFf758c(),
-                            ),
-                            onChanged: (newValue) {
-                              setState(() {
-                                dropdownImage = newValue.toString();
-                              });
-                            },
-                            items: lstCatInfo.map((value) {
-                              return DropdownMenuItem(
-                                value: value,
-                                child: Row(
-                                  children: [
-                                    Text(value)
-                                  ],
-                                ),
-                              );
-                            }).toList(),
+                    Container(
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            //                   <--- left side
+                            color: Colors.grey,
+                            width: 1.0,
                           ),
                         ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      alertCatYears(
-                          double.parse(textEditingControlleNumber.text), dropdownImage);
-                    },
-                    icon: Icon(
-                      Icons.calculate_outlined,
-                      color: colorPinkFf758c(),
+                      ),
+                      child: TextField(
+                        controller: textEditingControlleNumber,
+                        keyboardType: TextInputType.number,
+                        autocorrect: false,
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: 'Nhập cân nặng (kg)',
+                        ),
+                      ),
                     ),
-                    iconSize: 40,
-                  )
-                ],
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      width: double.infinity,
+                      child: Center(
+                        child: DropdownButton<String>(
+                          // isExpanded: true,
+                          value: dropdownImage,
+                          // icon: Icon(Icons.arrow_drop_down_outlined, color: colorPinkFf758c(),),
+                          style:
+                          TextStyle(color: colorPinkFf758c()),
+                          underline: Container(
+                            height: 0,
+                            color: colorPinkFf758c(),
+                          ),
+                          onChanged: (newValue) {
+                            setState(() {
+                              dropdownImage = newValue.toString();
+                            });
+                          },
+                          items: lstCatInfo.map((value) {
+                            return DropdownMenuItem(
+                              value: value,
+                              child: Row(
+                                children: [
+                                  Text(value)
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        alertCatYears(
+                            double.parse(textEditingControlleNumber.text), dropdownImage);
+                      },
+                      icon: Icon(
+                        Icons.calculate_outlined,
+                        color: colorPinkFf758c(),
+                      ),
+                      iconSize: 40,
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-        ),
+        )
+
       ),
     );
   }

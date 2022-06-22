@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
@@ -157,7 +158,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
             Expanded(
               child: Center(
                 child: Text(
-                  'Vòng Quay Nhận Xu',
+                  'spin_title',
                   style: TextStyle(
                     fontSize: 25,
                     color: colorPinkFf758c(),
@@ -166,7 +167,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                     decoration: TextDecoration.underline,
                     decorationStyle: TextDecorationStyle.dashed,
                   ),
-                ),
+                ).tr(),
               ),
             ),
             Expanded(
@@ -177,7 +178,7 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Bạn đã trúng: ${items[index]} ',
+                            '${'trung_xu'.tr()} ${items[index]} ',
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -194,8 +195,8 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                         ],
                       ),
                     )
-                  : const Center(
-                      child: Text('Quay nào'),
+                  : Center(
+                      child: Text('spin_start').tr(),
                     ),
             ),
             Expanded(
@@ -281,15 +282,15 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                             print("đong quang cao som");
                           }
                         },
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            'SPIN',
+                            'spin',
                             style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Inter',
                                 color: Colors.white),
-                          ),
+                          ).tr(),
                         ),
                       );
                     }else {

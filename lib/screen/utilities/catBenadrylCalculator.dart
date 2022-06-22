@@ -36,80 +36,89 @@ class _MyCatBenadrylCalculator extends State<CatBenadrylCalculator> {
     // TODO: implement build
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Card(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              width: 50.w,
-              height: 35.h,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: InkWell(
-                            onTap: () {
-                              alertInfo();
-                            },
-                            child: Icon(
-                              Icons.info_outline,
-                              color: colorPinkFf758c(),
-                              size: 35,
-                            )),
-                      )),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 5, bottom: 5),
-                    decoration: BoxDecoration(
-                        color: colorPinkFf758c(),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: const Text(
-                      'Cân nặng',
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontFamily: 'Inter',
-                          color: Colors.white),
+        child: Container(
+          decoration: BoxDecoration(
+            image:DecorationImage(
+              image: AssetImage("acssets/images/cats/bgCat2.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: Card(
+              child: Container(
+                padding: EdgeInsets.all(20),
+                width: 50.w,
+                height: 35.h,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: InkWell(
+                              onTap: () {
+                                alertInfo();
+                              },
+                              child: Icon(
+                                Icons.info_outline,
+                                color: colorPinkFf758c(),
+                                size: 35,
+                              )),
+                        )),
+                    Container(
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, top: 5, bottom: 5),
+                      decoration: BoxDecoration(
+                          color: colorPinkFf758c(),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: const Text(
+                        'Cân nặng',
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontFamily: 'Inter',
+                            color: Colors.white),
+                      ),
                     ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          //                   <--- left side
-                          color: Colors.grey,
-                          width: 1.0,
+                    Container(
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            //                   <--- left side
+                            color: Colors.grey,
+                            width: 1.0,
+                          ),
+                        ),
+                      ),
+                      child: TextField(
+                        controller: textEditingControlleNumber,
+                        keyboardType: TextInputType.number,
+                        autocorrect: false,
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: 'Nhập cân nặng (kg)',
                         ),
                       ),
                     ),
-                    child: TextField(
-                      controller: textEditingControlleNumber,
-                      keyboardType: TextInputType.number,
-                      autocorrect: false,
-                      decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                        labelText: 'Nhập cân nặng (kg)',
+                    IconButton(
+                      onPressed: () {
+                        alertCatYears(
+                            double.parse(textEditingControlleNumber.text));
+                      },
+                      icon: Icon(
+                        Icons.calculate_outlined,
+                        color: colorPinkFf758c(),
                       ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      alertCatYears(
-                          double.parse(textEditingControlleNumber.text));
-                    },
-                    icon: Icon(
-                      Icons.calculate_outlined,
-                      color: colorPinkFf758c(),
-                    ),
-                    iconSize: 40,
-                  )
-                ],
+                      iconSize: 40,
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-        ),
+        )
+
       ),
     );
   }

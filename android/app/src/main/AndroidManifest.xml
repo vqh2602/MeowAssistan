@@ -9,8 +9,25 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
 
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <!-- If your app checks for SMS support -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="sms" />
+        </intent>
+        <!-- If your app checks for call support -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="tel" />
+        </intent>
+    </queries>
+
+
    <application
-        android:label="meowassistan"
+        android:label="Meow Assistan"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
@@ -39,9 +56,13 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-       <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+<!--       test Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713-->
        <meta-data
            android:name="com.google.android.gms.ads.APPLICATION_ID"
            android:value="ca-app-pub-3940256099942544~3347511713"/>
+       <!--admod -->
+<!--       <meta-data-->
+<!--           android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+<!--           android:value="ca-app-pub-5964552069889646~5616439907"/>-->
     </application>
 </manifest>

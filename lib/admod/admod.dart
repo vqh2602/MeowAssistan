@@ -1,12 +1,13 @@
 
 import 'dart:io' show Platform;
-
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 // You can also test with your own ad unit IDs by registering your device as a
 // test device. Check the logs for your device's ID value.
 const String testDevice = 'YOUR_DEVICE_ID';
 const int maxFailedLoadAttempts = 3;
+
+const String IdAdmodHeader = '//ca-app-pub-5964552069889646/5528809996';
 
  AdRequest request = const AdRequest(
    keywords: <String>['foo', 'bar'],
@@ -22,11 +23,22 @@ int numRewardedLoadAttempts = 0;
 RewardedInterstitialAd? rewardedInterstitialAd;
 int numRewardedInterstitialLoadAttempts = 0;
 
+
+
+
+
+
 void createInterstitialAd() {
   InterstitialAd.load(
+    //ca-app-pub-5964552069889646/6426958690
+    // test
       adUnitId: Platform.isAndroid
           ? 'ca-app-pub-3940256099942544/1033173712'
           : 'ca-app-pub-3940256099942544/4411468910',
+
+    // adUnitId: Platform.isAndroid
+    //     ? 'ca-app-pub-5964552069889646/6426958690'
+    //     : 'ca-app-pub-3940256099942544/4411468910',
       request: request,
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
@@ -71,9 +83,14 @@ void showInterstitialAd() {
 
 void createRewardedAd() {
   RewardedAd.load(
+    //ca-app-pub-5964552069889646/6710029729
+  //  test
       adUnitId: Platform.isAndroid
           ? 'ca-app-pub-3940256099942544/5224354917'
           : 'ca-app-pub-3940256099942544/1712485313',
+    // adUnitId: Platform.isAndroid
+    //     ? 'ca-app-pub-5964552069889646/6710029729'
+    //     : 'ca-app-pub-3940256099942544/1712485313',
       request: request,
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (RewardedAd ad) {
@@ -130,9 +147,13 @@ bool showRewardedAd() {
 
 void createRewardedInterstitialAd() {
   RewardedInterstitialAd.load(
+    //test
+    //   adUnitId: Platform.isAndroid
+    //       ? 'ca-app-pub-3940256099942544/5354046379'
+    //       : 'ca-app-pub-3940256099942544/6978759866',
       adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/5354046379'
-          : 'ca-app-pub-3940256099942544/6978759866',
+          ? 'ca-app-pub-5964552069889646/6710029729'
+          : 'ca-app-pub-3940256099942544/1712485313',
       request: request,
       rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
         onAdLoaded: (RewardedInterstitialAd ad) {

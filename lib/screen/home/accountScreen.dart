@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:lottie/lottie.dart';
-import 'package:meowassistan/screen/loginSignup/loginScreen.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../Color/colors.dart';
@@ -14,6 +15,7 @@ import '../../events/authencation_event.dart';
 import '../../events/user_event.dart';
 import '../../repository/userRepository.dart';
 import '../../states/user_state.dart';
+import '../infoApp/infoApp.dart';
 
 class AccountScreen extends StatefulWidget {
   UserRepository userRepository;
@@ -34,7 +36,7 @@ class _MyAccountScreen extends State<AccountScreen> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   late UserBloc _userBloc;
   late AuthenticationBloc _authenticationBloc;
-
+  bool checkBuy = true;
   @override
   void initState() {
     // TODO: implement initState
@@ -43,6 +45,7 @@ class _MyAccountScreen extends State<AccountScreen> {
     _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
     _userBloc.add(GetUser(userRepository: userRepository!));
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -106,15 +109,15 @@ class _MyAccountScreen extends State<AccountScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:<Widget> [
+                    children: <Widget>[
                       Text(
-                        'Hello, $name',
+                        'xin_chao',
                         style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Inter',
                             color: Colors.white),
-                      ),
+                      ).tr(namedArgs: {'name': '$name'}),
                       Text(
                         '$email',
                         style: const TextStyle(
@@ -124,17 +127,22 @@ class _MyAccountScreen extends State<AccountScreen> {
                       ),
                       ElevatedButton(
                         style: TextButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 20, color: Colors.white),
+                          textStyle: const TextStyle(
+                              fontSize: 20, color: Colors.white),
                         ),
-                        onPressed: (){
-                          alertLogOut('Thông Báo', 'Bạn muốn đăng xuất chứ', email);
+                        onPressed: () {
+                          alertLogOut(
+                              'notification'.tr(), 'alert_logout'.tr(), email);
                           // context.read<AuthenticationBloc>().add(AuthenticationEventLogout());
                           // Navigator.pushReplacement(
                           //     context,
                           //     MaterialPageRoute(
                           //         builder: (BuildContext context) => LoginScreen(userRepository: userRepository,)));
                         },
-                        child:  const Icon(Icons.logout,color: Colors.white,),
+                        child: const Icon(
+                          Icons.logout,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -157,33 +165,41 @@ class _MyAccountScreen extends State<AccountScreen> {
                 child: Column(
                   children: [
                     Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        width: 70,
-                        height: 70,
-                        margin: const EdgeInsets.only(right: 50),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(
-                                  0, 4), // changes position of shadow
+                        alignment: Alignment.centerRight,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.bottomToTop,
+                                    child:  InfoApp()));
+                          },
+                          child: Container(
+                            width: 70,
+                            height: 70,
+                            margin: const EdgeInsets.only(right: 50),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: const Offset(
+                                      0, 4), // changes position of shadow
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Ionicons.create_outline,
-                            size: 40,
-                            color: colorPinkFf758c(),
+                            child: Center(
+                              child: Icon(
+                                Icons.interests,
+                                size: 40,
+                                color: colorPinkFf758c(),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
+                        )),
                     const Padding(padding: EdgeInsets.all(20)),
                     Center(
                       child: Row(
@@ -192,14 +208,20 @@ class _MyAccountScreen extends State<AccountScreen> {
                               flex: 5,
                               child: Column(
                                 children: [
-                                  Text(
-                                    '$catcoin',
-                                    style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 20,
-                                        color: colorPinkFf758c(),
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  checkBuy
+                                      ? Text(
+                                          '$catcoin',
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize: 20,
+                                              color: colorPinkFf758c(),
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      : CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                          colorPinkFf758c(),
+                                        )),
                                   SizedBox(
                                     width: 30,
                                     height: 30,
@@ -225,19 +247,25 @@ class _MyAccountScreen extends State<AccountScreen> {
                               flex: 5,
                               child: Column(
                                 children: [
-                                  Text(
-                                    '$expirationDate',
-                                    style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 20,
-                                        color: colorPinkFf758c(),
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                  checkBuy
+                                      ? Text(
+                                          '$expirationDate',
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize: 20,
+                                              color: colorPinkFf758c(),
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      : CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                          colorPinkFf758c(),
+                                        )),
                                   const Padding(padding: EdgeInsets.all(3)),
                                   Text(
-                                    'Ngày hết hạn',
+                                    'expiration_date',
                                     style: TextStyle(color: colorFCAFAD()),
-                                  )
+                                  ).tr()
                                 ],
                               ))
                         ],
@@ -258,16 +286,24 @@ class _MyAccountScreen extends State<AccountScreen> {
                               ),
                               child: InkWell(
                                 onTap: () {
-
-                                  alertBuyCatCoin('Thông báo', 'Bạn có muốn mua dịch vụ này với giá 1000 catcoin?', catcoin,email,1000,24);
-
+                                  alertBuyCatCoin(
+                                      'notification'.tr(),
+                                      'buy_1000'.tr(),
+                                      catcoin,
+                                      email,
+                                      1000,
+                                      24);
 
                                   //  Navigator.pushReplacement(
                                   //      context,
                                   //      MaterialPageRoute(
                                   //          builder: (BuildContext context) => super.widget)); //Recall the function again
                                 },
-                                child: buyCatCoin('acssets/images/cats/buy1day.png', '1 ngày', '1000','0%'),
+                                child: buyCatCoin(
+                                    'acssets/images/cats/buy1day.png',
+                                    '1 ${'day'.tr()}',
+                                    '1000',
+                                    '0%'),
                               ),
                             ),
                             Container(
@@ -279,14 +315,24 @@ class _MyAccountScreen extends State<AccountScreen> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  alertBuyCatCoin('Thông báo', 'Bạn có muốn mua dịch vụ này với giá 6000 catcoin?', catcoin,email,6000,168);
+                                  alertBuyCatCoin(
+                                      'notification'.tr(),
+                                      'buy_6000'.tr(),
+                                      catcoin,
+                                      email,
+                                      6000,
+                                      168);
 
                                   //  Navigator.pushReplacement(
                                   //      context,
                                   //      MaterialPageRoute(
                                   //          builder: (BuildContext context) => super.widget)); //Recall the function again
                                 },
-                                child: buyCatCoin('acssets/images/cats/buy7day.png', '7 ngày', '6000','15%'),
+                                child: buyCatCoin(
+                                    'acssets/images/cats/buy7day.png',
+                                    '7 ${'day'.tr()}',
+                                    '6000',
+                                    '15%'),
                               ),
                             ),
                             Container(
@@ -297,11 +343,19 @@ class _MyAccountScreen extends State<AccountScreen> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  alertBuyCatCoin('Thông báo', 'Bạn có muốn mua dịch vụ này với giá 23500 catcoin?', catcoin,email,23500,750);
-
-
+                                  alertBuyCatCoin(
+                                      'notification'.tr(),
+                                      'buy_30000'.tr(),
+                                      catcoin,
+                                      email,
+                                      23500,
+                                      750);
                                 },
-                                child: buyCatCoin('acssets/images/cats/buy30day.png', '30 ngày', '23500','30%'),
+                                child: buyCatCoin(
+                                    'acssets/images/cats/buy30day.png',
+                                    '30 ${'day'.tr()}',
+                                    '23500',
+                                    '30%'),
                               ),
                             ),
                           ],
@@ -314,13 +368,11 @@ class _MyAccountScreen extends State<AccountScreen> {
     );
   }
 
-  Widget buyCatCoin(String img,days,coin,tk){
+  Widget buyCatCoin(String img, days, coin, tk) {
     return Row(
-      mainAxisAlignment:
-      MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Image.asset(
-            img),
+        Image.asset(img),
         Column(
           children: [
             Text(
@@ -337,9 +389,7 @@ class _MyAccountScreen extends State<AccountScreen> {
                   TextSpan(
                     text: "$coin ",
                     style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight:
-                        FontWeight.bold),
+                        fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                   WidgetSpan(
                     child: Image.asset(
@@ -357,7 +407,7 @@ class _MyAccountScreen extends State<AccountScreen> {
           text: TextSpan(
             children: [
               TextSpan(
-                text: "Tiết kiệm ",
+                text: "${'tiet_kiem'.tr()}",
                 style: TextStyle(
                   fontSize: 14,
                 ),
@@ -404,7 +454,8 @@ class _MyAccountScreen extends State<AccountScreen> {
             catcoinnew = await data["catcoin"] - catcoinbuy;
             dt = data["expirationDate"].toDate();
 
-            print('expirationDate : ${data["expirationDate"].toDate()} | catcoin new: $catcoinnew | newday: ${dt.add(const Duration(days: 1))}');
+            print(
+                'expirationDate : ${data["expirationDate"].toDate()} | catcoin new: $catcoinnew | newday: ${dt.add(const Duration(days: 1))}');
 
             if (dt.isAfter(now)) {
               final washingtonRef = db.collection("users").doc(email);
@@ -434,13 +485,13 @@ class _MyAccountScreen extends State<AccountScreen> {
   }
 
   void ShowSnackbar() {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text("Không đủ tiền"),
+    ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+      content: Text('${'not_enough_money'.tr()}'),
     ));
   }
 
-  void alertBuyCatCoin(String title, content, catcoin, email, int catcoinbuy, int timehour){
-
+  void alertBuyCatCoin(
+      String title, content, catcoin, email, int catcoinbuy, int timehour) {
     Alert(
       context: context,
       title: title,
@@ -462,31 +513,31 @@ class _MyAccountScreen extends State<AccountScreen> {
           ),
           onPressed: () {
             print('${catcoin.toInt()}');
-            if(catcoin.toInt() > catcoinbuy-1){
+            if (catcoin.toInt() > catcoinbuy - 1) {
               buyCatcoin(email, catcoinbuy, timehour);
+
               // reload
               // Go to Page2 after 5s.
-              Future.delayed(const Duration(seconds: 3), () {
-                context.read<UserBloc>().add(GetUser(
-                    userRepository: userRepository!));
+              Future.delayed(const Duration(seconds: 1), () {
+                context
+                    .read<UserBloc>()
+                    .add(GetUser(userRepository: userRepository!));
                 Navigator.pop(context);
+                setLoadding();
               });
-            }else{
+            } else {
               Navigator.pop(context);
               ShowSnackbar();
             }
-
           },
-          gradient: LinearGradient(colors: [
-            colorPinkFf758c(),
-            colorPinkFf7eb3()
-          ]),
+          gradient:
+              LinearGradient(colors: [colorPinkFf758c(), colorPinkFf7eb3()]),
         )
       ],
     ).show();
   }
 
-  void alertLogOut(String title, content,email){
+  void alertLogOut(String title, content, email) {
     Alert(
       context: context,
       title: title,
@@ -494,23 +545,22 @@ class _MyAccountScreen extends State<AccountScreen> {
       image: Lottie.asset('acssets/iconAnimation/catSad.json'),
       buttons: [
         DialogButton(
-          child: const Text(
-            "Huỷ",
+          child: Text(
+            'cancel'.tr(),
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () => Navigator.pop(context),
           color: const Color.fromRGBO(0, 179, 134, 1.0),
         ),
         DialogButton(
-          child: const Text(
-            "Ok",
+          child: Text(
+            'buy'.tr(),
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
             context.read<AuthenticationBloc>().add(AuthenticationEventLogout());
             Future.delayed(Duration(seconds: 2), () {
-
-              Navigator.pushNamedAndRemoveUntil(context,'/',(_) => false);
+              Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
             });
             //Navigator.pushNamedAndRemoveUntil(context,'/',(_) => false);
             // Navigator.of(context).pushNamedAndRemoveUntil('/routeName', (route) => false);
@@ -518,14 +568,22 @@ class _MyAccountScreen extends State<AccountScreen> {
             //     context,
             //     MaterialPageRoute(
             //         builder: (BuildContext context) => LoginScreen(userRepository: userRepository,)));
-
           },
-          gradient: LinearGradient(colors: [
-            colorPinkFf758c(),
-            colorPinkFf7eb3()
-          ]),
+          gradient:
+              LinearGradient(colors: [colorPinkFf758c(), colorPinkFf7eb3()]),
         )
       ],
     ).show();
+  }
+
+  void setLoadding() async {
+    setState(() {
+      checkBuy = false;
+    });
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        checkBuy = true;
+      });
+    });
   }
 }

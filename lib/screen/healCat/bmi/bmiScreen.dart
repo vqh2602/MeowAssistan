@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -86,20 +87,12 @@ class NoteGrid extends StatelessWidget {
                        onTap: () {
                          Alert(
                              context: context,
-                             title: "Hướng dẫn",
-                             desc: "1, Ấn 1 lần để chuyển sang công cụ chi tiết"
-                             "\n2, Ấn đúp vào để chỉnh sửa thông tin"
-                             "\n3, Ấn giữ để xoá 1 chiếc mèo"
-                             "\n* Lưu ý: dữ liệu được lưu cục bộ, sẽ mất nếu bạn xoá dữ liệu ứng dụng"
-                                 "\n----------------"
-                                 "\n----------------",
+                             title: 'huong_dan'.tr(),
+
                            content: Column(
                              children: [
-                               Text('Cách đo chỉ số: \n'
-                                   '1,Hãy chắc chắn rằng con mèo của bạn đang đứng với đầu của nó ở vị trí thẳng đứng.'
-                                   '\n2,Đo lồng xương sườn của mèo. Lý tưởng nhất, bạn muốn làm điều này ở cấp độ xương sườn thứ 9, nằm ở chân trước của mèo.'
-                                   '\n3,Đo chiều dài chân sau của mèo từ đầu gối đến mắt cá chân.'
-                                   '\n4,Nhap dữ liệu'),
+                               Text('bmi_huongdan_des').tr(),
+                               Text('cach_do_chi_so_des').tr(),
                                Image.asset('acssets/images/cats/catBmi.webp')
 
                              ],
@@ -112,7 +105,7 @@ class NoteGrid extends StatelessWidget {
               ],
             )),
         Expanded(
-            flex: 7,
+            flex: 6,
             child: ListView.builder(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),

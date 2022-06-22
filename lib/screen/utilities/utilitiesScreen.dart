@@ -3,6 +3,7 @@ import 'package:meowassistan/screen/utilities/calculatorAgeCat.dart';
 import 'package:meowassistan/screen/utilities/catBenadrylCalculator.dart';
 import 'package:meowassistan/screen/utilities/catCalorieCalculator.dart';
 import 'package:meowassistan/screen/utilities/catPregnancyCalculator.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
@@ -32,32 +33,36 @@ class UtilitiesScreen extends StatelessWidget {
                 flex: 2,
                 child: Column(
                   children: [
-                 Align(
-                   child:  Container(
-                     padding: EdgeInsets.only(top: 20,left: 20),
-                     child: Text('Tiện ích',
-                       style: TextStyle(
-                           fontSize: 20.sp,
-                           fontWeight: FontWeight.bold,
-                           fontFamily: 'Inter',
-                           color: Colors.white
-                       ),),
-                 alignment: Alignment.topLeft,)),
                     Align(
-                        child:  Container(
-                          padding: EdgeInsets.only(left: 20),
-                          child: Text('công việc của bạn sẽ trở nên nhàn hơn',
-                            style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Inter',
-                                color: Colors.white
-                            ),),
-                          alignment: Alignment.topLeft,))
+                        child: Container(
+                      padding: EdgeInsets.only(top: 20, left: 20),
+                      child: Text(
+                        'Tiện ích',
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Inter',
+                            color: Colors.white),
+                      ),
+                      alignment: Alignment.topLeft,
+                    )),
+                    Align(
+                        child: Container(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'công việc của bạn sẽ trở nên nhàn hơn',
+                        style: TextStyle(
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Inter',
+                            color: Colors.white),
+                      ),
+                      alignment: Alignment.topLeft,
+                    ))
                   ],
                 )),
             Expanded(
-              flex: 10,
+                flex: 10,
                 child: ListView.builder(
                     // shrinkWrap: true,
                     // physics: const BouncingScrollPhysics(),
@@ -110,42 +115,49 @@ class UtilitiesScreen extends StatelessWidget {
     return (index % 2 == 0) ? leftCard(index, title) : rightCard(index, title);
   }
 
-  void pushPage(int index, BuildContext context){
-switch(index){
-  case 0:
-  Navigator.push(context,
-      MaterialPageRoute(builder: (BuildContext context) {
-        return const CalculatorAgeCat();
-      }));
-    break;
-  case 1:{
-   if(vip){
-     Navigator.push(context,
-         MaterialPageRoute(builder: (BuildContext context) {
-           return const CatBenadrylCalculator();
-         }));
-   }else{
-     showAlertVip(context);
-   }
-   }
-    break;
-  case 2:{
-    if(vip){
-      Navigator.push(context,
-          MaterialPageRoute(builder: (BuildContext context) {
-            return const CatCalorieCalculator();
-          }));
-    }else{
-      showAlertVip(context);
+  void pushPage(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: CalculatorAgeCat()));
+        break;
+      case 1:
+        {
+          if (vip) {
+            Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.leftToRight,
+                    child: CatBenadrylCalculator()));
+          } else {
+            showAlertVip(context);
+          }
+        }
+        break;
+      case 2:
+        {
+          if (vip) {
+            Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: CatCalorieCalculator()));
+          } else {
+            showAlertVip(context);
+          }
+        }
+        break;
+      case 3:
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.leftToRight,
+                child: CatPregnancyCalculator()));
+        break;
     }
-}
-  break;
-  case 3:  Navigator.push(context,
-      MaterialPageRoute(builder: (BuildContext context) {
-        return const CatPregnancyCalculator();
-      }));
-    break;
-}
   }
 
   Widget leftCard(int index, String title) {
@@ -179,12 +191,14 @@ switch(index){
                   alignment: Alignment.centerRight,
                   child: Container(
                     margin: EdgeInsets.only(right: 20.w),
-                    child: Text('$title',style: TextStyle(
-                      fontSize: 11.5.sp,
-                      color: colorPinkFf758c(),
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.bold
-                    ),),
+                    child: Text(
+                      '$title',
+                      style: TextStyle(
+                          fontSize: 11.5.sp,
+                          color: colorPinkFf758c(),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 Positioned(
@@ -238,12 +252,14 @@ switch(index){
                   alignment: Alignment.centerLeft,
                   child: Container(
                     margin: EdgeInsets.only(left: 20.w),
-                    child: Text('$title',style: TextStyle(
-                      fontSize: 11.5.sp,
-                      color: colorPinkFf758c(),
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.bold
-                    ),),
+                    child: Text(
+                      '$title',
+                      style: TextStyle(
+                          fontSize: 11.5.sp,
+                          color: colorPinkFf758c(),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 Positioned(
@@ -266,27 +282,25 @@ switch(index){
     );
   }
 
-
-
-  void showAlertVip(BuildContext context){
-
-
+  void showAlertVip(BuildContext context) {
     Alert(
       context: context,
       // style: alertStyle,
       // type: AlertType.info,
       title: "Thông Báo",
-      desc: "Bạn chưa đăng kí dịch vụ, vui lòng vào trang tài khoản để gia hạn dịch vụ. \n Bạn có thể nhận xu miễn phí tại vòng quay",
+      desc:
+          "Bạn chưa đăng kí dịch vụ, vui lòng vào trang tài khoản để gia hạn dịch vụ. \n Bạn có thể nhận xu miễn phí tại vòng quay",
       image: Image.asset("acssets/images/catEmoji/crown.png"),
       buttons: [
         DialogButton(
-          gradient: LinearGradient(colors: [
-            colorPinkFf758c(),
-            colorPinkFf7eb3()
-          ]),
+          gradient:
+              LinearGradient(colors: [colorPinkFf758c(), colorPinkFf7eb3()]),
           child: const Text(
             "Ok",
-            style: TextStyle(color: Colors.white, fontSize: 20,),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
           ),
           onPressed: () => Navigator.pop(context),
           color: const Color.fromRGBO(0, 179, 134, 1.0),

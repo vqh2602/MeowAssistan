@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -5,10 +6,12 @@ import 'package:meowassistan/Color/colors.dart';
 import 'package:meowassistan/bloc/user_bloc.dart';
 import 'package:meowassistan/screen/catEmoij/catEmoijScreen.dart';
 import 'package:meowassistan/screen/healCat/catScreen.dart';
+import 'package:meowassistan/screen/healCat/doctor/doctorScreen.dart';
 import 'package:meowassistan/screen/speechToCat/speechToCat.dart';
 import 'package:meowassistan/screen/utilities/utilitiesScreen.dart';
 import 'package:meowassistan/states/user_state.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../events/user_event.dart';
@@ -50,8 +53,11 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
     _userBloc = BlocProvider.of<UserBloc>(context);
     _userBloc.add(GetUser(userRepository: userRepository!));
 
+
     // ad banner
     _bannerAd = BannerAd(
+      //ca-app-pub-5964552069889646/5528809996
+      //   adUnitId: BannerAd.testAdUnitId,
       adUnitId: BannerAd.testAdUnitId,
       request: const AdRequest(),
       size: AdSize.banner,
@@ -87,12 +93,12 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Hello, $name',
+                      'xin_chao',
                       style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Inter'),
-                    ),
+                    ).tr(namedArgs: {'name': '$name'}),
                     const CircleAvatar(
                       radius: 40, // Image radius
                       backgroundImage:
@@ -102,6 +108,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                 ),
               ),
             ),
+
             Align(
               alignment: FractionalOffset.topCenter,
               child: Padding(
@@ -122,9 +129,9 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                     padding:
                         const EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     child: Text(
-                      'Giao Tiếp Meow',
+                      'giao_tiep',
                       style: styleTitle(),
-                    ),
+                    ).tr(),
                   ),
                   const Padding(padding: EdgeInsets.all(10)),
                   Row(
@@ -162,18 +169,18 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                                     // mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       const Text(
-                                        'Thể hiện cảm xúc',
+                                        'title_cam_xuc',
                                         style: TextStyle(
                                           fontFamily: 'Inter',
                                           fontSize: 17,
                                           fontWeight: FontWeight.bold,
                                         ),
-                                      ),
+                                      ).tr(),
                                       Text(
-                                        'phát những âm thanh mèo',
+                                        'cam_xuc_des',
                                         style: TextStyle(
                                             color: colorB3B3B3(), fontSize: 14),
-                                      )
+                                      ).tr()
                                     ],
                                   ),
                                 ),
@@ -198,13 +205,17 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                           flex: 1,
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.leftToRight,
-                                      child: SpeechToCatScreen(
-                                        vip: vip,
-                                      )));
+                          if(vip){
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.leftToRight,
+                                    child: SpeechToCatScreen(
+                                      vip: vip,
+                                    )));
+                          }else{
+                            showAlertVip(context);
+                          }
                               // Navigator.push(
                               //   context,
                               //   MaterialPageRoute(builder: (context) => SpeechToCatScreen(vip: vip,)),
@@ -221,18 +232,18 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                                     // mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       const Text(
-                                        'Phiên dịch',
+                                        'title_phien_dich',
                                         style: TextStyle(
                                           fontFamily: 'Inter',
                                           fontSize: 17,
                                           fontWeight: FontWeight.bold,
                                         ),
-                                      ),
+                                      ).tr(),
                                       Text(
-                                        'phiên dịch âm thanh của bạn thành tiếng mèo kêu',
+                                        'phien_dich_des',
                                         style: TextStyle(
                                             color: colorB3B3B3(), fontSize: 14),
-                                      )
+                                      ).tr()
                                     ],
                                   ),
                                 ),
@@ -269,9 +280,9 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                       padding: const EdgeInsets.only(
                           left: 20, right: 20, bottom: 10, top: 20),
                       child: Text(
-                        'Sức khoẻ meow',
+                        'suc_khoe',
                         style: styleTitle(),
-                      ),
+                      ).tr(),
                     ),
                   ),
                   const Padding(padding: EdgeInsets.all(10)),
@@ -298,19 +309,19 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                                 // mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   const Text(
-                                    'BMI',
+                                    'BMI_title',
                                     style: TextStyle(
                                       fontFamily: 'Inter',
                                       fontSize: 17,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                  ),
+                                  ).tr(),
                                   Text(
-                                    'tính chỉ số BMI',
+                                    'BMI_des',
                                     style: TextStyle(
                                         color: colorDFDFDF(), fontSize: 14),
-                                  )
+                                  ).tr()
                                 ],
                               ),
                             ),
@@ -328,40 +339,51 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                     alignment: AlignmentDirectional.centerEnd,
                     children: [
                       Image.asset('acssets/images/cats/homeCatDoctor.png'),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0, right: 50, top: 5),
-                            child: Column(
-                              // crossAxisAlignment: CrossAxisAlignment.end,
-                              // mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                const Text(
-                                  'Bác sĩ',
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'phán đoán bệnh',
-                                  style: TextStyle(
-                                      color: colorDFDFDF(), fontSize: 14),
-                                )
-                              ],
+
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: DoctorScreen(vip: vip,)));
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 50, top: 5),
+                              child: Column(
+                                // crossAxisAlignment: CrossAxisAlignment.end,
+                                // mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  const Text(
+                                    'bac_si_title',
+                                    style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ).tr(),
+                                  Text(
+                                    'bac_si_des',
+                                    style: TextStyle(
+                                        color: colorDFDFDF(), fontSize: 14),
+                                  ).tr()
+                                ],
+                              ),
                             ),
-                          ),
-                          const Padding(
-                              padding: EdgeInsets.only(left: 10, right: 20),
-                              child: Icon(Icons.arrow_circle_right_outlined,
-                                  size: 40, color: Colors.white))
-                        ],
+                            const Padding(
+                                padding: EdgeInsets.only(left: 10, right: 20),
+                                child: Icon(Icons.arrow_circle_right_outlined,
+                                    size: 40, color: Colors.white))
+                          ],
+                        ),
                       )
+
                     ],
                   ),
                   const Padding(padding: EdgeInsets.all(10)),
@@ -369,38 +391,45 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                     alignment: AlignmentDirectional.centerEnd,
                     children: [
                       Image.asset('acssets/images/cats/homeCatFollow.png'),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 0, right: 50, top: 5),
-                            child: Column(
-                              // crossAxisAlignment: CrossAxisAlignment.end,
-                              // mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                const Text(
-                                  'Sổ sức khoẻ',
-                                  style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'sổ theo dõi',
-                                  style: TextStyle(
-                                      color: colorDFDFDF(), fontSize: 14),
-                                )
-                              ],
+                      InkWell(
+                        onTap: (){
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("${'coming_soon'.tr()}"),
+                          ));
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 0, right: 50, top: 5),
+                              child: Column(
+                                // crossAxisAlignment: CrossAxisAlignment.end,
+                                // mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  const Text(
+                                    'so_sk_title',
+                                    style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ).tr(),
+                                  Text(
+                                    'so_sk_des',
+                                    style: TextStyle(
+                                        color: colorDFDFDF(), fontSize: 14),
+                                  ).tr()
+                                ],
+                              ),
                             ),
-                          ),
-                          const Padding(
-                              padding: EdgeInsets.only(left: 10, right: 20),
-                              child: Icon(Icons.arrow_circle_right_outlined,
-                                  size: 40, color: Colors.white))
-                        ],
+                            const Padding(
+                                padding: EdgeInsets.only(left: 10, right: 20),
+                                child: Icon(Icons.arrow_circle_right_outlined,
+                                    size: 40, color: Colors.white))
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -427,10 +456,11 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                   ),
                   InkWell(
                     onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                            return UtilitiesScreen(vip: vip,);
-                          }));
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.bottomToTop,
+                              child: UtilitiesScreen(vip: vip)));
                     },
                     child: Container(
                       height: 200,
@@ -522,5 +552,31 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
     DateTime now = DateTime.now();
     print('check ngay con dich vu: ${dateTimeUser.isAfter(now)}');
     return dateTimeUser.isAfter(now);
+  }
+  void showAlertVip(BuildContext context){
+
+    Alert(
+      context: context,
+      // style: alertStyle,
+      // type: AlertType.info,
+      title: 'notification'.tr(),
+      desc: 'title_check_vip'.tr(),
+      image: Image.asset("acssets/images/catEmoji/crown.png"),
+      buttons: [
+        DialogButton(
+          gradient: LinearGradient(colors: [
+            colorPinkFf758c(),
+            colorPinkFf7eb3()
+          ]),
+          child: const Text(
+            "Ok",
+            style: TextStyle(color: Colors.white, fontSize: 20,),
+          ),
+          onPressed: () => Navigator.pop(context),
+          color: const Color.fromRGBO(0, 179, 134, 1.0),
+          radius: BorderRadius.circular(50.0),
+        ),
+      ],
+    ).show();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:meowassistan/bloc/user_bloc.dart';
 import 'package:meowassistan/models/hive_Models/database/cat_db.dart';
 import 'package:meowassistan/repository/userRepository.dart';
 import 'package:meowassistan/screen/healCat/catScreen.dart';
+import 'package:meowassistan/screen/healCat/doctor/doctorScreen.dart';
 
 import 'package:meowassistan/screen/loginSignup/loginScreen.dart';
 import 'package:meowassistan/screen/loginSignup/registerScreen.dart';
@@ -43,6 +45,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  // ngôn ngữ
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
   final UserRepository _userRepository = UserRepository();
 
   BlocOverrides.runZoned(
@@ -50,26 +56,33 @@ Future<void> main() async {
       // final userRepository = UserRepository();
       // userRepository.createUserWithEmailAndPassword('vqh@aaa.com', '12345678');
       runApp(
-          MultiBlocProvider(
-            providers: [
-              BlocProvider<UserBloc>(
-                create: (BuildContext context) => UserBloc(userRepository: _userRepository),
-              ),
-              BlocProvider<AuthenticationBloc>(
-                create: (BuildContext context) => AuthenticationBloc(userRepository: _userRepository),
-              ),
-              BlocProvider<LoginBloc>(
-                create: (BuildContext context) => LoginBloc(userRepository: _userRepository),
-              ),
-              BlocProvider<CatBloc>(
-                create: (BuildContext context) => CatBloc(catDatabase: CatDatabase()),
-              ),
-              BlocProvider<BMIBloc>(
-                create: (BuildContext context) => BMIBloc(bmiDatabase:BMIDatabase()),
-              ),
-            ],
-            child: MyApp(userRepository: _userRepository,),
-          ));
+
+          EasyLocalization(
+              supportedLocales: [Locale('en'), Locale('vi')],
+              path: 'acssets/translations', // <-- change the path of the translation files
+              fallbackLocale: Locale('en'),
+              child:  MultiBlocProvider(
+                providers: [
+                  BlocProvider<UserBloc>(
+                    create: (BuildContext context) => UserBloc(userRepository: _userRepository),
+                  ),
+                  BlocProvider<AuthenticationBloc>(
+                    create: (BuildContext context) => AuthenticationBloc(userRepository: _userRepository),
+                  ),
+                  BlocProvider<LoginBloc>(
+                    create: (BuildContext context) => LoginBloc(userRepository: _userRepository),
+                  ),
+                  BlocProvider<CatBloc>(
+                    create: (BuildContext context) => CatBloc(catDatabase: CatDatabase()),
+                  ),
+                  BlocProvider<BMIBloc>(
+                    create: (BuildContext context) => BMIBloc(bmiDatabase:BMIDatabase()),
+                  ),
+                ],
+                child: MyApp(userRepository: _userRepository,),
+              )
+          ),
+      );
     },
     blocObserver: SimpleBlocObserver(),
   );
@@ -132,7 +145,11 @@ class MyApp extends StatelessWidget {
         '/LoginScreen': (BuildContext context) => LoginScreen(),
         '/RegisterScreen': (BuildContext context) => RegisterScreen(),
       },
-     // home:  UtilitiesScreen(),
+      // ngôn ngữ
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+     // home:  DoctorScreen(),
       home: BlocProvider(
         create: (context) => AuthenticationBloc(userRepository: userRepository!)
           ..add(AuthenticationEventStarted()),

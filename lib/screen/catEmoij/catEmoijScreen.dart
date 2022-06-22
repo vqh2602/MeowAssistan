@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:meowassistan/data/dataCatEmoij.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -49,11 +50,11 @@ class _MyCatEmojiScreen extends State<CatEmojiScreen>{
                     const Padding(padding: EdgeInsets.all(5)),
                     Image.asset('acssets/images/cats/catEmoij.png', fit: BoxFit.cover,width: double.infinity,),
                     const Padding(padding: EdgeInsets.all(5)),
-                    const Text('Thể Hiện cảm xúc ',style: TextStyle(
+                    Text('title_cam_xuc',style: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
-                    ))
+                    )).tr()
                   ],
                 )),
             Expanded(
@@ -148,8 +149,8 @@ class _MyCatEmojiScreen extends State<CatEmojiScreen>{
       context: context,
       // style: alertStyle,
       // type: AlertType.info,
-      title: "Thông Báo",
-      desc: "Bạn chưa đăng kí dịch vụ, vui lòng vào trang tài khoản để gia hạn dịch vụ. \n Bạn có thể nhận xu miễn phí tại vòng quay",
+      title: 'notification'.tr(),
+      desc: 'title_check_vip'.tr(),
       image: Image.asset("acssets/images/catEmoji/crown.png"),
       buttons: [
         DialogButton(

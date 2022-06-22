@@ -1,5 +1,5 @@
 
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -47,20 +47,20 @@ class NoteCard extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                   Text(
-                    'Sinh nhật: ${ DateFormat('dd/MM/yyyy').format(cat.birt!)}',
+                    'sinh_nhat',
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 14,
                       wordSpacing: 1.25,),
 
-                  ),
+                  ).tr(namedArgs: {'sinhnhat': '${ DateFormat('dd/MM/yyyy').format(cat.birt!)}'}),
                   Row(
                     children: [
-                      const Text('Giới Tính: ',
+                     Text('gioi_tinh',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
-                            wordSpacing: 1.25,)),
+                            wordSpacing: 1.25,)).tr(),
                       (cat.sex!)?const Icon(Icons.male, color: Colors.lightBlueAccent,) : const Icon(Icons.female_rounded, color: Colors.pinkAccent,)
                     ],
                   )

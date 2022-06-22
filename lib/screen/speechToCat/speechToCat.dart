@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:meowassistan/screen/speechToCat/randomCatVoice.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
@@ -115,12 +117,12 @@ class _MySpeechToCatScreen extends State<SpeechToCatScreen> {
                             width: double.infinity,
                           ),
                           const Padding(padding: EdgeInsets.all(5)),
-                          const Text('Phiên dịch ',
+                          Text('title_phien_dich',
                               style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
-                              ))
+                              )).tr()
                         ],
                       )),
                   Expanded(
@@ -130,8 +132,12 @@ class _MySpeechToCatScreen extends State<SpeechToCatScreen> {
                         children: [
                           Align(
                             child: InkWell(
-                              onTap: () {},
-                              child: const Icon(Icons.info_outline),
+                              onTap: () {
+                                alertInfo();
+                              },
+                              child: Icon( Icons.info_outline,
+                                color: colorPinkFf758c(),
+                                size: 35,),
                             ),
                             alignment: Alignment.centerRight,
                           ),
@@ -204,9 +210,9 @@ class _MySpeechToCatScreen extends State<SpeechToCatScreen> {
                       ))
                 ],
               )
-            : const Center(
+            : Center(
                 child: Text(
-                    'Bạn chưa đăng kí dịch vụ, vào vòng quay để kiếm thêm catcoin, vào trang tài khoản để gia hạn dịch vụ'),
+                    'title_check_vip').tr(),
               ),
       ),
     );
@@ -214,5 +220,50 @@ class _MySpeechToCatScreen extends State<SpeechToCatScreen> {
 
   // This is called each time the users wants to start a new speech
   // recognition session
-
+  void alertInfo() {
+    Alert(
+      context: context,
+      title: 'info'.tr(),
+      image: Lottie.asset('acssets/iconAnimation/search.json'),
+      content: Container(
+          child: Column(
+            children: [
+              Text(
+                'speech_to_cat_how_to_user',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ).tr(),
+              Text(
+                'speech_to_cat_exam',
+                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
+              ).tr(),
+              Text(
+                'speech_to_cat_phien_dich',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ).tr(),
+              Text(
+                'speech_to_cat_csdl',
+                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
+              ).tr(),
+              Text(
+                'speech_to_cat_human',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ).tr(),
+              Text(
+                'speech_to_cat_human_des',
+                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
+              ).tr(),
+            ],
+          )),
+      buttons: [
+        DialogButton(
+          child: const Text(
+            "Ok",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.pop(context),
+          color: const Color.fromRGBO(0, 179, 134, 1.0),
+        ),
+      ],
+    ).show();
+  }
 }

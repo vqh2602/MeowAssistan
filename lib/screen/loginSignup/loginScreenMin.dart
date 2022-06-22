@@ -76,7 +76,7 @@ class _myLoginStatus extends State<LoginStatus>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return (status == 1 )? const Center(child: Text('Đăng nhập thành công, sẽ từ trở về trang đăng nhập sau 5 giây'),) : const Center(child: Text('Đăng kí thất bại'),);
+    return (status == 1 )? const Center(child: Text(' '),) : const Center(child: Text('thất bại'),);
   }
 
 }

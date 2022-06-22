@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meowassistan/states/cat_state.dart';
@@ -61,7 +62,7 @@ class NoteGrid extends StatelessWidget {
               children: [
                 Center(
                   child: Text(
-                    'Danh Sách Mèo',
+                    'list_cat',
                     style: TextStyle(
                       fontSize: 25,
                       color: colorPinkFf758c(),
@@ -70,7 +71,7 @@ class NoteGrid extends StatelessWidget {
                       decoration: TextDecoration.underline,
                       decorationStyle: TextDecorationStyle.dashed,
                     ),
-                  ),
+                  ).tr(),
                 ),
                Align(
                  alignment: Alignment.centerRight,
@@ -78,10 +79,7 @@ class NoteGrid extends StatelessWidget {
                    padding: const EdgeInsets.only(left: 20,right: 20),
                    child:  InkWell(
                        onTap: () {
-                         Alert(context: context, title: "Hướng dẫn", desc: "1, Ấn 1 lần để chuyển sang công cụ BMI hoặc Sổ sức khoẻ"
-                             "\n2, Ấn đúp vào để chỉnh sửa thông tin"
-                             "\n3, Ấn giữ để xoá 1 chiếc mèo"
-                             "\n* Lưu ý: dữ liệu được lưu cục bộ, sẽ mất nếu bạn xoá dữ liệu ứng dụng").show();
+                         Alert(context: context, title: 'huong_dan'.tr(), desc:'huong_dan_des'.tr()).show();
                        },
                        child: Icon(Icons.info_outline,color: colorPinkFf758c(),size: 35,)),
                  ))

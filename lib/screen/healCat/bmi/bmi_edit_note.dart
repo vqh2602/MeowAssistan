@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,12 +73,12 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                                 color: colorPinkFf758c(),
                                 borderRadius: BorderRadius.circular(50)),
                             child: const Text(
-                              'Ngày thêm',
+                              'ngay_them',
                               style: TextStyle(
                                   fontSize: 17,
                                   fontFamily: 'Inter',
                                   color: Colors.white),
-                            ),
+                            ).tr(namedArgs: {'time':''}),
                           ),
                           Container(
                             width: double.infinity,
@@ -129,12 +130,12 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                                 color: colorPinkFf758c(),
                                 borderRadius: BorderRadius.circular(50)),
                             child: const Text(
-                              'Bán Kính (cm)',
+                              'ban_kinh',
                               style: TextStyle(
                                   fontSize: 17,
                                   fontFamily: 'Inter',
                                   color: Colors.white),
-                            ),
+                            ).tr(namedArgs: {'bk':''}),
                           ),
                           TextFormField(
                             controller: _textcontrolr,
@@ -171,12 +172,12 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                                 color: colorPinkFf758c(),
                                 borderRadius: BorderRadius.circular(50)),
                             child: const Text(
-                              'Chiều Dài (cm)',
+                              'chieu_dai',
                               style: TextStyle(
                                   fontSize: 17,
                                   fontFamily: 'Inter',
                                   color: Colors.white),
-                            ),
+                            ).tr(namedArgs: {'cd':''}),
                           ),
                           TextFormField(
                             controller: _textcontrolh,
@@ -240,7 +241,7 @@ class _MyEditCatScreen extends State<EditBMIScreen> {
                             }
                           },
                           child:
-                              widget.newNote ? const Text('Tạo') : const Text('Cập nhật'),
+                              widget.newNote ? const Text('create').tr() : const Text('update').tr(),
                         ),
                       ),
                     ],
