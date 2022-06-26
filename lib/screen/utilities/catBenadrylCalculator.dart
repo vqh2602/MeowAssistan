@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -172,37 +173,27 @@ class _MyCatBenadrylCalculator extends State<CatBenadrylCalculator> {
   void alertInfo() {
     Alert(
       context: context,
-      title: 'Thông tin',
+      title: 'info'.tr(),
       image: Lottie.asset('acssets/iconAnimation/search.json'),
       content: Container(
           child: Column(
         children: [
           Text(
-            'Benadryl là gì và nó được sử dụng để làm gì?',
+            'ben_cat',
             style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          ).tr(),
           Text(
-            'Benadryl là một loại thuốc kháng histamine chủ yếu được sử dụng để làm giảm các triệu chứng của phản ứng dị ứng . Khi gặp các chất gây dị ứng cụ thể ( bụi , cỏ , nhựa , phấn hoa, nấm, v.v.), hệ thống miễn dịch của mèo có thể giải phóng histamine và các hóa chất khác, có thể gây ra các triệu chứng dị ứng, chẳng hạn như:'
-            '\n - Hắt xì \n - Ho và thở khò khè \n - Da ngứa (gãi quá nhiều và chải đầu quá mức) \n - Nôn mửa và tiêu chảy \n - Đầy hơi và chướng bụng.'
-            '\nThuốc kháng histamine, bao gồm Benadryl, làm giảm phản ứng của cơ thể với histamine và làm giảm bớt các triệu chứng nêu trên. Bên cạnh việc làm giảm các triệu chứng dị ứng, bác sĩ thú y có thể khuyên dùng Benadryl vì các lý do y tế khác , chẳng hạn như lo lắng và ngăn ngừa say tàu xe và buồn nôn.'
-            '\nLưu ý rằng nếu mèo của bạn đang bị sốc phản vệ (phản ứng dị ứng nghiêm trọng được phân biệt bằng khó thở, sưng mặt, co giật hoặc suy sụp), Benadryl có thể không giúp được gì - bạn cần đưa mèo đến phòng khám thú y gần nhất ngay lập tức'
-            '\n ---------',
+            'ben_cat_des',
             style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-          ),
+          ).tr(),
           Text(
-            'Benadryl có an toàn cho mèo không?',
+            'ben_cat_antoan',
             style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+          ).tr(),
           Text(
-            'Mặc dù mèo nói chung có thể mắc bệnh Benadryl, nhưng bạn không bao giờ được cho mèo uống Benadryl mà không hỏi ý kiến ​​bác sĩ thú y để tránh các biến chứng nghiêm trọng về sức khỏe. Thuốc kháng histamine cho mèo không phải lúc nào cũng an toàn , đặc biệt là khi mèo của bạn có thể bị dị ứng với thuốc dị ứng. Dưới đây là một số biện pháp phòng ngừa bạn nên thực hiện để đảm bảo thú cưng quý giá của mình được điều trị an toàn:'
-            '\n 💊 Tránh các viên nang dạng gel, có chứa dung môi (môi trường hòa tan) có thể gây kích ứng hoặc thậm chí có thể gây độc cho mèo.'
-            '\n 💡 Chú ý đến thành phần hoạt tính của loại thuốc bạn mua. Nếu thuốc có chứa các hoạt chất khác ngoài diphenhydramine, bạn cần hỏi ý kiến ​​bác sĩ thú y.'
-            '\n 🔎 Đảm bảo rằng mèo của bạn nhận được liều lượng chính xác theo trọng lượng chính xác của nó. Nếu nghi ngờ, bạn luôn có thể kiểm tra lại với bác sĩ thú y và kiểm tra ba lần bằng cách sử dụng máy tính liều lượng Benadryl cho mèo của chúng tôi!'
-            '\n 🆘 Theo dõi hành vi của mèo và đảm bảo rằng nó không gặp bất kỳ tác dụng phụ bất lợi nào. Sẽ là tốt nhất nếu bạn chú ý đến'
-            '\n   Hyperexcitability \n   Khô miệng, Buồn nôn \n   Giảm hứng thú với thức ăn \n   Giảm đi tiểu \n   Thuốc an thần  \n   Bệnh tiêu chảy'
-            '\n 👩 Đảm bảo bạn có thể đến gặp bác sĩ thú y hoặc phòng khám thú y gần nhất để được giúp đỡ, trong trường hợp mèo của bạn gặp phải các tác dụng phụ bất lợi.',
+            'ben_cat_antoan_des',
             style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-          )
+          ).tr()
         ],
       )),
       buttons: [

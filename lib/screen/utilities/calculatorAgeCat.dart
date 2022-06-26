@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -129,57 +130,59 @@ class _MyCalculatorAgeCat extends State<CalculatorAgeCat> {
         .difference(birthday)
         .inDays;
     print(difference);
-
+    String month = 'thang'.tr();
+    String year = 'nam'.tr();
+    String age = 'age'.tr();
     if (difference < 32) {
-      return cat ? '<1 tháng' : '3 ~ 6 tháng';
+      return cat ? '<1 $month' : '3 ~ 6 $month';
     } else if (difference > 31 && difference < 63) {
-      return cat ? '2 tháng' : '3 tuổi';
+      return cat ? '2 $month' : '3 $age';
     } else if (difference > 62 && difference < 125) {
-      return cat ? '4 tháng' : '6 tuổi';
+      return cat ? '4 $month' : '6 $age';
     } else if (difference > 124 && difference < 187) {
-      return cat ? '6 tháng' : '14 tuổi';
+      return cat ? '6 $month' : '14 $age';
     } else if (difference > 186 && difference < 373) {
-      return cat ? '1 năm' : '18 tuổi';
+      return cat ? '1 $year' : '18 $age';
     } else if (difference > 372 && difference < 745) {
-      return cat ? '2 năm' : '22 tuổi';
+      return cat ? '2 $year' : '22 $age';
     } else if (difference > 744 && difference < 1117) {
-      return cat ? '3 năm' : '26 tuổi';
+      return cat ? '3 $year' : '26 $age';
     } else if (difference > 1116 && difference < 1489) {
-      return cat ? '4 năm' : '30 tuổi';
+      return cat ? '4 $year' : '30 $age';
     } else if (difference >= 1489 && difference <= 1860) {
-      return cat ? '5 năm' : '36 tuổi';
+      return cat ? '5 $year' : '36 $age';
     } else if (difference >= 1861 && difference <= 2232) {
-      return cat ? '6 năm' : '40 tuổi';
+      return cat ? '6 $year' : '40 $age';
     } else if (difference >= 2233 && difference <= 2604) {
-      return cat ? '7 năm' : '44 tuổi';
+      return cat ? '7 $year' : '44 $age';
     } else if (difference >= 2605 && difference <= 2976) {
-      return cat ? '8 năm' : '48 tuổi';
+      return cat ? '8 $year' : '48 $age';
     } else if (difference >= 2977 && difference <= 3348) {
-      return cat ? '9 năm' : '52 tuổi';
+      return cat ? '9 $year' : '52 $age';
     } else if (difference >= 3349 && difference <= 3720) {
-      return cat ? '10 năm' : '56 tuổi';
+      return cat ? '10 $year' : '56 $age';
     } else if (difference >= 3721 && difference <= 4092) {
-      return cat ? '11 năm' : '60 tuổi';
+      return cat ? '11 $year' : '60 $age';
     } else if (difference >= 4093 && difference <= 4464) {
-      return cat ? '12 năm' : '64 tuổi';
+      return cat ? '12 $year' : '64 $age';
     } else if (difference >= 4465 && difference <= 4836) {
-      return cat ? '13 năm' : '68 tuổi';
+      return cat ? '13 $year' : '68 $age';
     } else if (difference >= 4837 && difference <= 5208) {
-      return cat ? '14 năm' : '72 tuổi';
+      return cat ? '14 $year' : '72 $age';
     } else if (difference >= 5209 && difference <= 5580) {
-      return cat ? '15 năm' : '76 tuổi';
+      return cat ? '15 $year' : '76 $age';
     } else if (difference >= 5581 && difference <= 5952) {
-      return cat ? '16 năm' : '80 tuổi';
+      return cat ? '16 $year' : '80 $age';
     } else if (difference >= 5953 && difference <= 6324) {
-      return cat ? '17 năm' : '84 tuổi';
+      return cat ? '17 $year' : '84 $age';
     } else if (difference >= 6325 && difference <= 6696) {
-      return cat ? '18 năm' : '88 tuổi';
+      return cat ? '18 $year' : '88 $age';
     } else if (difference >= 6697 && difference <= 7068) {
-      return cat ? '19 năm' : '92 tuổi';
+      return cat ? '19 $year' : '92 $age';
     } else if (difference >= 7069 && difference <= 7440) {
-      return cat ? '20 năm' : '100 tuổi';
+      return cat ? '20 $year' : '100 $age';
     } else if (difference >= 7441 && difference <= 7812) {
-      return cat ? '21 năm' : '>100 tuổi';
+      return cat ? '21 $year' : '>100 $age';
     } else {
       return cat ? 'erro' : 'erro';
     }
@@ -201,7 +204,7 @@ class _MyCalculatorAgeCat extends State<CalculatorAgeCat> {
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
             children: <TextSpan>[
               TextSpan(text: getDays(dateTime, true), style: TextStyle(fontWeight: FontWeight.bold, color: colorPinkFf758c())),
-              const TextSpan(text: ' <=> Humen years: ', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
+              const TextSpan(text: ' <=> Human years: ', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
               TextSpan(text: getDays(dateTime, false), style: TextStyle(fontWeight: FontWeight.bold, color: colorPinkFf758c())),
 
             ],
@@ -224,41 +227,35 @@ class _MyCalculatorAgeCat extends State<CalculatorAgeCat> {
   void alertInfo() {
     Alert(
       context: context,
-      title: 'Thông tin',
+      title: 'info'.tr(),
       image: Lottie.asset('acssets/iconAnimation/search.json'),
       content: Container(
           child: Column(
             children: [
               Text(
-                'Tuổi mèo là gì?',
+                'cat_year',
                 style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              ).tr(),
               Text(
-                'Nếu bạn là một chủ nhân may mắn của một chú mèo, chắc hẳn bạn đang băn khoăn không biết liệu chú mèo của mình có còn đang trong độ tuổi thanh xuân hay có thể đang trải qua giai đoạn khủng hoảng tuổi trung niên. Không cần tìm đâu xa - máy tính tuổi mèo này sẽ cung cấp cho bạn tất cả thông tin bạn cần, chuyển đổi giữa tuổi mèo và tuổi con người.'
-                    '\nMột quan niệm sai lầm phổ biến rằng một năm trong cuộc đời của một con mèo tương đương với bảy năm của con người. Trên thực tế, cách tính tuổi mèo phức tạp hơn một chút. Mèo con lớn nhanh khi còn nhỏ, nhưng càng lớn tuổi, quá trình lão hóa càng diễn ra chậm hơn. Có nghĩa là sau một năm, con mèo của bạn già bằng một đứa trẻ bảy tuổi, nhưng đối với những con mèo lớn hơn, mỗi năm chỉ tương đương với bốn tuổi của con người.'
-                    '\nĐương nhiên, không phải tất cả các con mèo đều có tuổi giống nhau. Một con mèo sống ngoài trời nhìn chung sẽ có tuổi thọ ngắn hơn một con mèo trong nhà. Ngoài ra, trong khi loài mèo điển hình sống khoảng 10-15 năm, một số giống mèo già đi chậm hơn hoặc nhanh hơn. Tuy nhiên, công cụ tính tuổi mèo này sẽ giúp bạn biết rõ về thâm niên của mèo.'
-                    '',
+                'cat_year_des',
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-              ),
+              ).tr(),
               Text(
-                'Làm thế nào để ước tính tuổi của một con mèo?',
+                'cal_cat',
                 style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              ).tr(),
               Text(
-                'Làm thế nào để ước tính tuổi của một con mèo?'
-                    '\n - Răng của mèo. Nếu bạn phải giải quyết cho chỉ một chỉ số, thì đây là điều nên làm. Mèo con có bộ răng vĩnh viễn đầu tiên khi chúng được khoảng bốn tháng tuổi. Nếu răng của mèo trắng, bạn có thể cho rằng nó khoảng một năm tuổi. Màu vàng hơn gợi ý ở độ tuổi từ một đến hai tuổi, trong khi vôi răng tích tụ hoặc mất răng cho thấy mèo lớn hơn'
-                    '\n - Mắt mèo. Mèo con thường có đôi mắt sáng và lấp lánh. Một vài đám mây có thể cho thấy rằng con mèo của bạn đã 10 tuổi trở lên. Ngoài ra, tròng đen của mắt mèo già có vẻ hơi lởm chởm.'
-                    '\n - Áo khoác của mèo. Bộ lông của mèo con mềm và mịn, trong khi mèo lớn hơn có xu hướng có bộ lông thô hơn. Nếu bạn tìm thấy một số mảng màu xám hoặc trắng, có thể con mèo đã lớn tuổi.',
+                'cal_cat_des',
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-              ),
+              ).tr(),
               Text(
-                'Mèo có thể mang thai ở độ tuổi nào?',
+                'cat_mangthai',
                 style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              ).tr(),
               Text(
-                'Mèo đạt đến độ tuổi thành thục sinh dục khi được bốn tháng tuổi . Điều này có nghĩa là những con mèo còn nhỏ có thể mang thai. Tuy nhiên, việc mang thai sớm chắc chắn không được khuyến khích cho mèo con. Cân nhắc triệt sản cho mèo để tránh mang thai không cần thiết và mèo con đi lạc nhiều hơn.',
+                'cat_mangthai_des',
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-              ),
+              ).tr(),
             ],
           )),
       buttons: [

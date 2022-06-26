@@ -76,18 +76,31 @@
   "ban_kinh": "Bán kính: {bk} cm",
   "chieu_dai": "Chiều dài: {cd} cm",
   "nguy_hiem": "Nguy hiểm: ",
-  "trung_khop": "Trùng khớp {tyle} %",
+  "trung_khop": "Trùng khớp {style} %",
   "cac_trieu_chung": "Các triệu chứng",
   "tt_khac": "Triệu chứng khác",
   "tt_ngoai_da": "Triệu chứng ngoài da",
   "tt_ho_hap": "Hệ hô hấp",
   "tt_baitiet": "Hệ bài tiết \n& tiêu hoá",
   "tt_thankinh": "Triệu chứng thần kinh",
-  "tt_vandong": "Triệu chứng vận động"
-
-
-
-
+  "tt_vandong": "Triệu chứng vận động",
+  "thang": "tháng",
+  "nam": "năm",
+  "age": "tuổi",
+  "cat_year": "Tuổi mèo là gì?",
+  "cat_year_des": "Nếu bạn là một chủ nhân may mắn của một chú mèo, chắc hẳn bạn đang băn khoăn không biết liệu chú mèo của mình có còn đang trong độ tuổi thanh xuân hay có thể đang trải qua giai đoạn khủng hoảng tuổi trung niên. Không cần tìm đâu xa - máy tính tuổi mèo này sẽ cung cấp cho bạn tất cả thông tin bạn cần, chuyển đổi giữa tuổi mèo và tuổi con người.\nMột quan niệm sai lầm phổ biến rằng một năm trong cuộc đời của một con mèo tương đương với bảy năm của con người. Trên thực tế, cách tính tuổi mèo phức tạp hơn một chút. Mèo con lớn nhanh khi còn nhỏ, nhưng càng lớn tuổi, quá trình lão hóa càng diễn ra chậm hơn. Có nghĩa là sau một năm, con mèo của bạn già bằng một đứa trẻ bảy tuổi, nhưng đối với những con mèo lớn hơn, mỗi năm chỉ tương đương với bốn tuổi của con người.\nĐương nhiên, không phải tất cả các con mèo đều có tuổi giống nhau. Một con mèo sống ngoài trời nhìn chung sẽ có tuổi thọ ngắn hơn một con mèo trong nhà. Ngoài ra, trong khi loài mèo điển hình sống khoảng 10-15 năm, một số giống mèo già đi chậm hơn hoặc nhanh hơn. Tuy nhiên, công cụ tính tuổi mèo này sẽ giúp bạn biết rõ về thâm niên của mèo.'\n    ",
+  "cal_cat": "Làm thế nào để ước tính tuổi của một con mèo?",
+  "cal_cat_des": "Làm thế nào để ước tính tuổi của một con mèo?\n - Răng của mèo. Nếu bạn phải giải quyết cho chỉ một chỉ số, thì đây là điều nên làm. Mèo con có bộ răng vĩnh viễn đầu tiên khi chúng được khoảng bốn tháng tuổi. Nếu răng của mèo trắng, bạn có thể cho rằng nó khoảng một năm tuổi. Màu vàng hơn gợi ý ở độ tuổi từ một đến hai tuổi, trong khi vôi răng tích tụ hoặc mất răng cho thấy mèo lớn hơn\n - Mắt mèo. Mèo con thường có đôi mắt sáng và lấp lánh. Một vài đám mây có thể cho thấy rằng con mèo của bạn đã 10 tuổi trở lên. Ngoài ra, tròng đen của mắt mèo già có vẻ hơi lởm chởm.\n - Áo khoác của mèo. Bộ lông của mèo con mềm và mịn, trong khi mèo lớn hơn có xu hướng có bộ lông thô hơn. Nếu bạn tìm thấy một số mảng màu xám hoặc trắng, có thể con mèo đã lớn tuổi.",
+  "cat_mangthai": "Mèo có thể mang thai ở độ tuổi nào?",
+  "cat_mangthai_des": "Mèo đạt đến độ tuổi thành thục sinh dục khi được bốn tháng tuổi . Điều này có nghĩa là những con mèo còn nhỏ có thể mang thai. Tuy nhiên, việc mang thai sớm chắc chắn không được khuyến khích cho mèo con. Cân nhắc triệt sản cho mèo để tránh mang thai không cần thiết và mèo con đi lạc nhiều hơn.",
+  "ben_cat": "Benadryl là gì và nó được sử dụng để làm gì?",
+  "ben_cat_des" : "Benadryl là một loại thuốc kháng histamine chủ yếu được sử dụng để làm giảm các triệu chứng của phản ứng dị ứng . Khi gặp các chất gây dị ứng cụ thể ( bụi , cỏ , nhựa , phấn hoa, nấm, v.v.), hệ thống miễn dịch của mèo có thể giải phóng histamine và các hóa chất khác, có thể gây ra các triệu chứng dị ứng, chẳng hạn như: \n - Hắt xì\n - Ho và thở khò khè\n - Da ngứa (gãi quá nhiều và chải đầu quá mức)\n - Nôn mửa và tiêu chảy\n - Đầy hơi và chướng bụng.\nThuốc kháng histamine, bao gồm Benadryl, làm giảm phản ứng của cơ thể với histamine và làm giảm bớt các triệu chứng nêu trên. Bên cạnh việc làm giảm các triệu chứng dị ứng, bác sĩ thú y có thể khuyên dùng Benadryl vì các lý do y tế khác , chẳng hạn như lo lắng và ngăn ngừa say tàu xe và buồn nôn.\nLưu ý rằng nếu mèo của bạn đang bị sốc phản vệ (phản ứng dị ứng nghiêm trọng được phân biệt bằng khó thở, sưng mặt, co giật hoặc suy sụp), Benadryl có thể không giúp được gì - bạn cần đưa mèo đến phòng khám thú y gần nhất ngay lập tức\n ---------",
+  "ben_cat_antoan": "Benadryl có an toàn cho mèo không?",
+  "ben_cat_antoan_des": "Mặc dù mèo nói chung có thể mắc bệnh Benadryl, nhưng bạn không bao giờ được cho mèo uống Benadryl mà không hỏi ý kiến \u200B\u200Bbác sĩ thú y để tránh các biến chứng nghiêm trọng về sức khỏe. Thuốc kháng histamine cho mèo không phải lúc nào cũng an toàn , đặc biệt là khi mèo của bạn có thể bị dị ứng với thuốc dị ứng. Dưới đây là một số biện pháp phòng ngừa bạn nên thực hiện để đảm bảo thú cưng quý giá của mình được điều trị an toàn:\n \uD83D\uDC8A Tránh các viên nang dạng gel, có chứa dung môi (môi trường hòa tan) có thể gây kích ứng hoặc thậm chí có thể gây độc cho mèo.\n \uD83D\uDCA1 Chú ý đến thành phần hoạt tính của loại thuốc bạn mua. Nếu thuốc có chứa các hoạt chất khác ngoài diphenhydramine, bạn cần hỏi ý kiến \u200B\u200Bbác sĩ thú y.\n \uD83D\uDD0E Đảm bảo rằng mèo của bạn nhận được liều lượng chính xác theo trọng lượng chính xác của nó. Nếu nghi ngờ, bạn luôn có thể kiểm tra lại với bác sĩ thú y và kiểm tra ba lần bằng cách sử dụng máy tính liều lượng Benadryl cho mèo của chúng tôi!'\n \uD83C\uDD98 Theo dõi hành vi của mèo và đảm bảo rằng nó không gặp bất kỳ tác dụng phụ bất lợi nào. Sẽ là tốt nhất nếu bạn chú ý đến'\n   Hyperexcitability \n   Khô miệng, Buồn nôn \n   Giảm hứng thú với thức ăn \n   Giảm đi tiểu \n   Thuốc an thần \n   Bệnh tiêu chảy'\n \uD83D\uDC69 Đảm bảo bạn có thể đến gặp bác sĩ thú y hoặc phòng khám thú y gần nhất để được giúp đỡ, trong trường hợp mèo của bạn gặp phải các tác dụng phụ bất lợi.",
+  "calo_cat": "Nhu cầu calo cho mèo - thức ăn cho mèo có hàm lượng calo cao",
+  "calo_cat_des": "Thức ăn cho mèo \uD83D\uDC08 có hàm lượng calo cao bao gồm các chất dinh dưỡng cân bằng tốt, với protein là thành phần chính. Ngoài ra, nó không có hương vị nhân tạo và chất bảo quản. Chúng ta đều biết mèo của chúng ta có thể kén chọn như thế nào về hương vị, mùi và kết cấu thức ăn của chúng. Và nếu con mèo vì một lý do nào đó không cảm thấy như bản thân thông thường của nó, thì những giác quan này thậm chí còn được nâng cao hơn nữa.\nCó một số lý do tại sao một con mèo hoặc mèo con có thể bị suy dinh dưỡng, và bạn có thể cần sự trợ giúp của thức ăn cho mèo có hàm lượng calo cao.\nSau đây là danh sách các lý do và hoàn cảnh khi con mèo của bạn có thể yêu cầu thức ăn cho mèo có hàm lượng calo cao:\n - Một con mèo hoặc mèo con được giải cứu bị suy dinh dưỡng nghiêm trọng\n - Một con mèo yếu đuối hoặc già yếu\n - Một con mèo đã giảm cân do bệnh tật\n - Một con mèo đã trải qua phẫu thuật và hiện đang trong giai đoạn phục hồi\n - Một con mèo là một người kén ăn suy dinh dưỡng\n - Một con mèo có thể đã không ăn trong vài ngày vì nhiều lý do khác nhau như bị mất, di dời hoặc sống sót sau thảm họa thiên nhiên'\n - Một con mèo đang bị căng thẳng và lo lắng\n -Một con mèo đang hồi phục sau khi điều trị nha khoa",
+  "beo_phi": "Béo phì ở mèo",
+  "beo_phi_des": "Duy trì cân nặng khỏe mạnh cũng quan trọng không kém đối với tất cả các động vật có vú. Mặc dù chúng ta yêu mèo của chúng ta lông tơ như chúng có thể, béo phì ở mèo có thể là một vấn đề nghiêm trọng.\nTrong trường hợp như vậy, bạn có thể tham khảo tùy chọn máy tính giảm cân mèo (có sẵn từ danh sách thả xuống của máy tính này), đó là lý tưởng cho các bậc cha mẹ đang tìm kiếm một cách tốt để tính toán giảm cân ở mèo.\nVì vậy, các giải pháp tối ưu sẽ là:\n - Tham khảo ý kiến bác sĩ thú y của bạn\n - Cắt giảm thức ăn cho mèo có hàm lượng calo cao\n - Sử dụng máy tính giảm cân mèo này"
 
 
 

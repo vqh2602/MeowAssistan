@@ -76,7 +76,7 @@ class DiagnosisSick extends StatelessWidget{
                               lineHeight: 30.0,
                               animationDuration: 2500,
                               percent: lstPT[index].phantramtrung/ lstTrieuchung.length,
-                              center: Text('trung_khop').tr(namedArgs: {'tyle':'${(lstPT[index].phantramtrung*100 / lstTrieuchung.length).toStringAsFixed(2)}'}),
+                              center: Text('trung_khop').tr(namedArgs: {'style':'${(lstPT[index].phantramtrung*100 / lstTrieuchung.length).toStringAsFixed(2)}'}),
                               barRadius: const Radius.circular(16),
                               backgroundColor: colorDFDFDF(),
                               progressColor: colorPinkFf758c(),

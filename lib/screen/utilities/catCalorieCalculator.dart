@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -232,38 +233,23 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
       image: Lottie.asset('acssets/iconAnimation/search.json'),
       content: Container(
           child: Column(
-            children: const [
+            children:[
               Text(
-                'Nhu cầu calo cho mèo - thức ăn cho mèo có hàm lượng calo cao',
+                'calo_cat',
                 style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              ).tr(),
               Text(
-                'Thức ăn cho mèo 🐈 có hàm lượng calo cao bao gồm các chất dinh dưỡng cân bằng tốt, với protein là thành phần chính. Ngoài ra, nó không có hương vị nhân tạo và chất bảo quản. Chúng ta đều biết mèo của chúng ta có thể kén chọn như thế nào về hương vị, mùi và kết cấu thức ăn của chúng. Và nếu con mèo vì một lý do nào đó không cảm thấy như bản thân thông thường của nó, thì những giác quan này thậm chí còn được nâng cao hơn nữa.'
-                    '\nCó một số lý do tại sao một con mèo hoặc mèo con có thể bị suy dinh dưỡng, và bạn có thể cần sự trợ giúp của thức ăn cho mèo có hàm lượng calo cao.'
-                    '\nSau đây là danh sách các lý do và hoàn cảnh khi con mèo của bạn có thể yêu cầu thức ăn cho mèo có hàm lượng calo cao:'
-                    '\n - Một con mèo hoặc mèo con được giải cứu bị suy dinh dưỡng nghiêm trọng;'
-                    '\n - Một con mèo yếu đuối hoặc già yếu;'
-                    '\n - Một con mèo đã giảm cân do bệnh tật;'
-                    '\n - Một con mèo đã trải qua phẫu thuật và hiện đang trong giai đoạn phục hồi'
-                    '\n - Một con mèo là một người kén ăn suy dinh dưỡng'
-                    '\n - Một con mèo có thể đã không ăn trong vài ngày vì nhiều lý do khác nhau như bị mất, di dời hoặc sống sót sau thảm họa thiên nhiên'
-                    '\n - Một con mèo đang bị căng thẳng và lo lắng'
-                    '\n -Một con mèo đang hồi phục sau khi điều trị nha khoa',
+                'calo_cat_des',
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-              ),
+              ).tr(),
               Text(
-                'Béo phì ở mèo',
+                'beo_phi',
                 style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              ).tr(),
               Text(
-                'Duy trì cân nặng khỏe mạnh cũng quan trọng không kém đối với tất cả các động vật có vú. Mặc dù chúng ta yêu mèo của chúng ta lông tơ như chúng có thể, béo phì ở mèo có thể là một vấn đề nghiêm trọng.'
-                    '\nTrong trường hợp như vậy, bạn có thể tham khảo tùy chọn máy tính giảm cân mèo (có sẵn từ danh sách thả xuống của máy tính này), đó là lý tưởng cho các bậc cha mẹ đang tìm kiếm một cách tốt để tính toán giảm cân ở mèo.'
-                    '\nVì vậy, các giải pháp tối ưu sẽ là:'
-                    '\n - Tham khảo ý kiến bác sĩ thú y của bạn'
-                    '\n - Cắt giảm thức ăn cho mèo có hàm lượng calo cao'
-                    '\n - Sử dụng máy tính giảm cân mèo này',
+                'beo_phi_des',
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-              )
+              ).tr()
             ],
           )),
       buttons: [
