@@ -500,30 +500,29 @@ class _MyAccountScreen extends State<AccountScreen> {
       buttons: [
         DialogButton(
           child: const Text(
-            "Huỷ",
+            'cancel',
             style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
+          ).tr(),
           onPressed: () => Navigator.pop(context),
           color: const Color.fromRGBO(0, 179, 134, 1.0),
         ),
         DialogButton(
           child: const Text(
-            "Mua",
+            'buy',
             style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
+          ).tr(),
           onPressed: () {
             print('${catcoin.toInt()}');
             if (catcoin.toInt() > catcoinbuy - 1) {
               buyCatcoin(email, catcoinbuy, timehour);
-
               // reload
               // Go to Page2 after 5s.
+              context
+                  .read<UserBloc>()
+                  .add(GetUser(userRepository: userRepository!));
               Future.delayed(const Duration(seconds: 1), () {
-                context
-                    .read<UserBloc>()
-                    .add(GetUser(userRepository: userRepository!));
                 Navigator.pop(context);
-                setLoadding();
+                 setLoadding();
               });
             } else {
               Navigator.pop(context);
@@ -554,7 +553,7 @@ class _MyAccountScreen extends State<AccountScreen> {
         ),
         DialogButton(
           child: Text(
-            'buy'.tr(),
+            'Ok',
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () {
@@ -576,7 +575,7 @@ class _MyAccountScreen extends State<AccountScreen> {
     ).show();
   }
 
-  void setLoadding() async {
+  void setLoadding() {
     setState(() {
       checkBuy = false;
     });

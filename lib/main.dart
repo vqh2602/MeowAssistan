@@ -12,6 +12,8 @@ import 'package:meowassistan/models/hive_Models/database/cat_db.dart';
 import 'package:meowassistan/repository/userRepository.dart';
 import 'package:meowassistan/screen/healCat/catScreen.dart';
 import 'package:meowassistan/screen/healCat/doctor/doctorScreen.dart';
+import 'package:meowassistan/screen/infoApp/infoApp.dart';
+import 'package:meowassistan/screen/infoApp/version_App_Screen.dart';
 
 import 'package:meowassistan/screen/loginSignup/loginScreen.dart';
 import 'package:meowassistan/screen/loginSignup/registerScreen.dart';
@@ -46,8 +48,10 @@ Future<void> main() async {
   );
 
   // ngôn ngữ
-  WidgetsFlutterBinding.ensureInitialized();
+ // WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  //info app
+
 
   final UserRepository _userRepository = UserRepository();
 
@@ -149,7 +153,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-     // home:  DoctorScreen(),
+     //home:  InfoApp(),
       home: BlocProvider(
         create: (context) => AuthenticationBloc(userRepository: userRepository!)
           ..add(AuthenticationEventStarted()),

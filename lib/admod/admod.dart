@@ -30,15 +30,15 @@ int numRewardedInterstitialLoadAttempts = 0;
 
 void createInterstitialAd() {
   InterstitialAd.load(
-    //ca-app-pub-5964552069889646/6426958690
+    //ca-app-pub-5964552069889646/6899324305
     // test
-      adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/1033173712'
-          : 'ca-app-pub-3940256099942544/4411468910',
+    //   adUnitId: Platform.isAndroid
+    //       ? 'ca-app-pub-3940256099942544/1033173712'
+    //       : 'ca-app-pub-3940256099942544/4411468910',
 
-    // adUnitId: Platform.isAndroid
-    //     ? 'ca-app-pub-5964552069889646/6426958690'
-    //     : 'ca-app-pub-3940256099942544/4411468910',
+    adUnitId: Platform.isAndroid
+        ? 'ca-app-pub-5964552069889646/6899324305'
+        : 'ca-app-pub-3940256099942544/4411468910',
       request: request,
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
@@ -85,12 +85,12 @@ void createRewardedAd() {
   RewardedAd.load(
     //ca-app-pub-5964552069889646/6710029729
   //  test
-      adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-3940256099942544/5224354917'
-          : 'ca-app-pub-3940256099942544/1712485313',
-    // adUnitId: Platform.isAndroid
-    //     ? 'ca-app-pub-5964552069889646/6710029729'
-    //     : 'ca-app-pub-3940256099942544/1712485313',
+  //     adUnitId: Platform.isAndroid
+  //         ? 'ca-app-pub-3940256099942544/5224354917'
+  //         : 'ca-app-pub-3940256099942544/1712485313',
+    adUnitId: Platform.isAndroid
+        ? 'ca-app-pub-5964552069889646/6710029729'
+        : 'ca-app-pub-3940256099942544/1712485313',
       request: request,
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (RewardedAd ad) {
@@ -145,59 +145,59 @@ bool showRewardedAd() {
 
 }
 
-void createRewardedInterstitialAd() {
-  RewardedInterstitialAd.load(
-    //test
-    //   adUnitId: Platform.isAndroid
-    //       ? 'ca-app-pub-3940256099942544/5354046379'
-    //       : 'ca-app-pub-3940256099942544/6978759866',
-      adUnitId: Platform.isAndroid
-          ? 'ca-app-pub-5964552069889646/6710029729'
-          : 'ca-app-pub-3940256099942544/1712485313',
-      request: request,
-      rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
-        onAdLoaded: (RewardedInterstitialAd ad) {
-          print('$ad loaded.');
-          rewardedInterstitialAd = ad;
-          numRewardedInterstitialLoadAttempts = 0;
-        },
-        onAdFailedToLoad: (LoadAdError error) {
-          print('RewardedInterstitialAd failed to load: $error');
-          rewardedInterstitialAd = null;
-          numRewardedInterstitialLoadAttempts += 1;
-          if (numRewardedInterstitialLoadAttempts < maxFailedLoadAttempts) {
-            createRewardedInterstitialAd();
-          }
-        },
-      ));
-}
-
-void showRewardedInterstitialAd() {
-  if (rewardedInterstitialAd == null) {
-    print('Warning: attempt to show rewarded interstitial before loaded.');
-    return;
-  }
-  rewardedInterstitialAd!.fullScreenContentCallback =
-      FullScreenContentCallback(
-        onAdShowedFullScreenContent: (RewardedInterstitialAd ad) =>
-            print('$ad onAdShowedFullScreenContent.'),
-        onAdDismissedFullScreenContent: (RewardedInterstitialAd ad) {
-          print('$ad onAdDismissedFullScreenContent.');
-          ad.dispose();
-          createRewardedInterstitialAd();
-        },
-        onAdFailedToShowFullScreenContent:
-            (RewardedInterstitialAd ad, AdError error) {
-          print('$ad onAdFailedToShowFullScreenContent: $error');
-          ad.dispose();
-          createRewardedInterstitialAd();
-        },
-      );
-
-  rewardedInterstitialAd!.setImmersiveMode(true);
-  rewardedInterstitialAd!.show(
-      onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
-        print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
-      });
-  rewardedInterstitialAd = null;
-}
+// void createRewardedInterstitialAd() {
+//   RewardedInterstitialAd.load(
+//     //test
+//     //   adUnitId: Platform.isAndroid
+//     //       ? 'ca-app-pub-3940256099942544/5354046379'
+//     //       : 'ca-app-pub-3940256099942544/6978759866',
+//       adUnitId: Platform.isAndroid
+//           ? 'ca-app-pub-5964552069889646/6710029729'
+//           : 'ca-app-pub-3940256099942544/1712485313',
+//       request: request,
+//       rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
+//         onAdLoaded: (RewardedInterstitialAd ad) {
+//           print('$ad loaded.');
+//           rewardedInterstitialAd = ad;
+//           numRewardedInterstitialLoadAttempts = 0;
+//         },
+//         onAdFailedToLoad: (LoadAdError error) {
+//           print('RewardedInterstitialAd failed to load: $error');
+//           rewardedInterstitialAd = null;
+//           numRewardedInterstitialLoadAttempts += 1;
+//           if (numRewardedInterstitialLoadAttempts < maxFailedLoadAttempts) {
+//             createRewardedInterstitialAd();
+//           }
+//         },
+//       ));
+// }
+//
+// void showRewardedInterstitialAd() {
+//   if (rewardedInterstitialAd == null) {
+//     print('Warning: attempt to show rewarded interstitial before loaded.');
+//     return;
+//   }
+//   rewardedInterstitialAd!.fullScreenContentCallback =
+//       FullScreenContentCallback(
+//         onAdShowedFullScreenContent: (RewardedInterstitialAd ad) =>
+//             print('$ad onAdShowedFullScreenContent.'),
+//         onAdDismissedFullScreenContent: (RewardedInterstitialAd ad) {
+//           print('$ad onAdDismissedFullScreenContent.');
+//           ad.dispose();
+//           createRewardedInterstitialAd();
+//         },
+//         onAdFailedToShowFullScreenContent:
+//             (RewardedInterstitialAd ad, AdError error) {
+//           print('$ad onAdFailedToShowFullScreenContent: $error');
+//           ad.dispose();
+//           createRewardedInterstitialAd();
+//         },
+//       );
+//
+//   rewardedInterstitialAd!.setImmersiveMode(true);
+//   rewardedInterstitialAd!.show(
+//       onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+//         print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+//       });
+//   rewardedInterstitialAd = null;
+// }

@@ -14,6 +14,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../admod/admod.dart';
 import '../../events/user_event.dart';
 import '../../repository/userRepository.dart';
 
@@ -53,12 +54,14 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
     _userBloc = BlocProvider.of<UserBloc>(context);
     _userBloc.add(GetUser(userRepository: userRepository!));
 
+    //init ad
+    createInterstitialAd();
 
     // ad banner
     _bannerAd = BannerAd(
       //ca-app-pub-5964552069889646/5528809996
       //   adUnitId: BannerAd.testAdUnitId,
-      adUnitId: BannerAd.testAdUnitId,
+      adUnitId: 'ca-app-pub-5964552069889646/5528809996',
       request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
@@ -75,6 +78,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
     );
 
     _bannerAd.load();
+    //showInterstitialAd();
   }
 
   @override
@@ -146,6 +150,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                           flex: 1,
                           child: InkWell(
                             onTap: () {
+                              showInterstitialAd();
                               Navigator.push(
                                   context,
                                   PageTransition(
@@ -205,6 +210,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                           flex: 1,
                           child: InkWell(
                             onTap: () {
+                              showInterstitialAd();
                           if(vip){
                             Navigator.push(
                                 context,
@@ -292,6 +298,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                       Image.asset('acssets/images/cats/homeCatBMI.png'),
                       InkWell(
                         onTap: () {
+                          showInterstitialAd();
                           Navigator.push(
                               context,
                               PageTransition(
@@ -342,6 +349,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
 
                       InkWell(
                         onTap: (){
+                          showInterstitialAd();
                           Navigator.push(
                               context,
                               PageTransition(
@@ -449,9 +457,9 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                       padding: const EdgeInsets.only(
                           left: 20, right: 20, bottom: 30, top: 20),
                       child: Text(
-                        'Tiện ích meow',
+                        'tien_ich_title_m',
                         style: styleTitle(),
-                      ),
+                      ).tr(),
                     ),
                   ),
                   InkWell(
@@ -488,13 +496,13 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                             alignment: Alignment.centerRight,
                             child: Container(
                               margin: EdgeInsets.only(right: 40),
-                              child: Text('Danh sách các tiện ích',
+                              child: Text('danh_sach_tiem_ich',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 11.sp,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'Inter'
-                              ),),
+                              ),).tr(),
                             ),
                           ),
                           Positioned(

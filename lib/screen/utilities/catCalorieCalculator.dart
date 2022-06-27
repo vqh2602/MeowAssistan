@@ -11,6 +11,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Color/colors.dart';
+import '../../admod/admod.dart';
 
 class CatCalorieCalculator extends StatefulWidget {
   const CatCalorieCalculator({Key? key}) : super(key: key);
@@ -26,14 +27,14 @@ class CatCalorieCalculator extends StatefulWidget {
 class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
 
   TextEditingController textEditingControlleNumber = TextEditingController();
-  String dropdownImage = '1- mèo trưởng thành - lớn tuổi';
+  String dropdownImage = 'calo1'.tr();
   List<String> lstCatInfo = [
-'1- mèo trưởng thành - lớn tuổi',
-    '2- mèo trưởng thành',
-    '3- giảm cân',
-    '4- tăng cân',
-    '5- mèo con 0->4 tháng tuổi',
-    '6- mèo con 4 tháng -> trưởng thành'
+'calo1',
+    'calo2',
+    'calo3',
+    'calo4',
+    'calo5',
+    'calo6'
   ];
 
   @override
@@ -84,12 +85,12 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
                           color: colorPinkFf758c(),
                           borderRadius: BorderRadius.circular(50)),
                       child: const Text(
-                        'Cân nặng',
+                        'can_nang',
                         style: TextStyle(
                             fontSize: 17,
                             fontFamily: 'Inter',
                             color: Colors.white),
-                      ),
+                      ).tr(),
                     ),
                     Container(
                       width: double.infinity,
@@ -106,9 +107,9 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
                         controller: textEditingControlleNumber,
                         keyboardType: TextInputType.number,
                         autocorrect: false,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           border: UnderlineInputBorder(),
-                          labelText: 'Nhập cân nặng (kg)',
+                          labelText: 'nhap_can_nang'.tr(),
                         ),
                       ),
                     ),
@@ -146,6 +147,7 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
                     ),
                     IconButton(
                       onPressed: () {
+                        showInterstitialAd();
                         alertCatYears(
                             double.parse(textEditingControlleNumber.text), dropdownImage);
                       },
@@ -190,15 +192,15 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
       content: Container(
           child: RichText(
             text: TextSpan(
-              text: 'Số calo cần thiết tối thiểu: ',
+              text: 'calo_min'.tr(),
               style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               children: <TextSpan>[
                 TextSpan(
                     text: '${caloMin.toStringAsFixed(2)} cal',
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: colorPinkFf758c())),
-                const TextSpan(
-                    text: '\nTổng calo cần một ngày ',
+                TextSpan(
+                    text: 'calo_day'.tr(),
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.black)),
                 TextSpan(
@@ -206,7 +208,7 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: colorPinkFf758c())),
                 TextSpan(
-                    text: '\nvới lựa chọn: $cat ',
+                    text: 'calo_cat_eq'.tr(namedArgs: {'cat':cat}),
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.black)),
                 // TextSpan(text: getDays(dateTime, false), style: TextStyle(fontWeight: FontWeight.bold, color: colorPinkFf758c())),
@@ -229,7 +231,7 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
   void alertInfo() {
     Alert(
       context: context,
-      title: 'Thông tin',
+      title: 'info'.tr(),
       image: Lottie.asset('acssets/iconAnimation/search.json'),
       content: Container(
           child: Column(

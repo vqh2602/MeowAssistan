@@ -33,7 +33,7 @@ class CalculateBmiScreen extends StatelessWidget{
       }else if( num > 29.9  && num <42.1){
         return 'thua_can'.tr();
       }else if( num > 42 && num < 60.1){
-        return 'beo_phi'.tr();
+        return 'beo_phi_eq'.tr();
       }return 'cuc_mo'.tr();
     }
 

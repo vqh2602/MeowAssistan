@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class RegisterStatus extends StatefulWidget{
   late int status;
@@ -27,39 +28,13 @@ class _myRegisterStatus extends State<RegisterStatus>{
     //   // Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.")
     //   //     .show();
     //
-    //   Alert(
-    //     context: context,
-    //     type: AlertType.error,
-    //     title: "RFLUTTER ALERT",
-    //     desc: "Flutter is more awesome with RFlutter Alert.",
-    //     buttons: [
-    //       DialogButton(
-    //         child: const Text(
-    //           "COOL",
-    //           style: TextStyle(color: Colors.white, fontSize: 20),
-    //         ),
-    //         onPressed: () => Navigator.pop(context),
-    //         width: 120,
-    //       )
-    //     ],
-    //   ).show();
+    //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //     content: Text("Đăng kí thành công"),
+    //   ));
     // }else{
-    //   Alert(
-    //     context: context,
-    //     type: AlertType.error,
-    //     title: "RFLUTTER ALERT",
-    //     desc: "loi dang ki",
-    //     buttons: [
-    //       DialogButton(
-    //         child: const Text(
-    //           "COOL",
-    //           style: TextStyle(color: Colors.white, fontSize: 20),
-    //         ),
-    //         onPressed: () => Navigator.pop(context),
-    //         width: 120,
-    //       )
-    //     ],
-    //   ).show();
+    //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //     content: Text("Đăng kí thất bại"),
+    //   ));
     // }
     Future.delayed(const Duration(milliseconds: 5000), () {
       Navigator.of(context).pop();
@@ -69,7 +44,7 @@ class _myRegisterStatus extends State<RegisterStatus>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return (status == 1 )? const Center(child: Text(' '),) : const Center(child: Text('Đăng kí thất bại'),);
+    return (status == 1 )? const Center(child: Text(' Đăng kí thành công'),) : const Center(child: Text('Đăng kí thất bại'),);
   }
 
 }

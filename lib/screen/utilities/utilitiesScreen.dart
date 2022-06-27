@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:meowassistan/screen/utilities/calculatorAgeCat.dart';
 import 'package:meowassistan/screen/utilities/catBenadrylCalculator.dart';
@@ -8,15 +9,16 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Color/colors.dart';
+import '../../admod/admod.dart';
 
 class UtilitiesScreen extends StatelessWidget {
   bool vip;
 
   List<String> lstUtilities = [
-    'Tính tuổi mèo',
-    'Tính liều Benadryl',
-    'Tính calo mèo',
-    'Tính thời gian\nmang thai'
+    'tinh_tuoi_meo'.tr(),
+    'tinh_b'.tr(),
+    'tinh_calo'.tr(),
+    'tinh_mang_thai'.tr()
   ];
 
   UtilitiesScreen({Key? key, required this.vip}) : super(key: key);
@@ -37,26 +39,26 @@ class UtilitiesScreen extends StatelessWidget {
                         child: Container(
                       padding: EdgeInsets.only(top: 20, left: 20),
                       child: Text(
-                        'Tiện ích',
+                        'tien_ich_tt',
                         style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Inter',
                             color: Colors.white),
-                      ),
+                      ).tr(),
                       alignment: Alignment.topLeft,
                     )),
                     Align(
                         child: Container(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
-                        'công việc của bạn sẽ trở nên nhàn hơn',
+                        'tien_ich_des',
                         style: TextStyle(
                             fontSize: 10.sp,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Inter',
                             color: Colors.white),
-                      ),
+                      ).tr(),
                       alignment: Alignment.topLeft,
                     ))
                   ],
@@ -79,6 +81,7 @@ class UtilitiesScreen extends StatelessWidget {
                         width: double.infinity,
                         child: InkWell(
                           onTap: () {
+                            showInterstitialAd();
                             pushPage(index, context);
                             // Navigator.push(context,
                             //     MaterialPageRoute(builder: (BuildContext context) {
@@ -287,9 +290,8 @@ class UtilitiesScreen extends StatelessWidget {
       context: context,
       // style: alertStyle,
       // type: AlertType.info,
-      title: "Thông Báo",
-      desc:
-          "Bạn chưa đăng kí dịch vụ, vui lòng vào trang tài khoản để gia hạn dịch vụ. \n Bạn có thể nhận xu miễn phí tại vòng quay",
+      title: 'notification'.tr(),
+      desc:'title_check_vip'.tr(),
       image: Image.asset("acssets/images/catEmoji/crown.png"),
       buttons: [
         DialogButton(

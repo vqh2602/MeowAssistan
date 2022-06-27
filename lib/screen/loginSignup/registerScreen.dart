@@ -365,10 +365,10 @@ class _MyRegisterScreen extends State<RegisterScreen> {
   }
 
   void _onRegisterEmailAndPassword(){
-    // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    //   content: Text("Đăng kí thành công"),
-    // ));
-    Alert(context: context, title: "Thông Báo", desc: "Đang tạo tài khoản").show();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("Đang đăng kí"),
+    ));
+    // Alert(context: context, title: "Thông Báo", desc: "Đang tạo tài khoản").show();
     print('nhạn mail va pass | isRegisterButtonEnable: $isRegisterButtonEnable | isPopUpdate: $isPopUpdate');
     _registerBloc.add(RegisterEventWithEmailAndPasswordPressed(
         email: textEditingControllerEmail.text,

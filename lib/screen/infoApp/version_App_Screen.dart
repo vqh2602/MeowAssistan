@@ -1,18 +1,79 @@
+import 'package:blurrycontainer/blurrycontainer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class VersionAppScreen extends StatelessWidget{
+class VersionAppScreen extends StatefulWidget{
+
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+     return _MyVersionAppScreen();
+  }
+
+}
+class _MyVersionAppScreen extends State<VersionAppScreen>{
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+  );
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    print(info.version);
+    setState(() {
+      _packageInfo = info;
+    });
+  }
+
+  Widget _infoTile(String title, String subtitle) {
+    return ListTile(
+      title: Text(title),
+      subtitle: Text(subtitle.isEmpty ? 'Not set' : subtitle),
+    );
+  }
   @override
   Widget build(BuildContext context) {
-    Future<void> _launchInBrowser(Uri url) async {
+
+    String? encodeQueryParameters(Map<String, String> params) {
+      return params.entries
+          .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+          .join('&');
+    }
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'vqh2602@gmail.com',
+      query: encodeQueryParameters(<String, String>{
+        'subject': 'Thông báo lỗi ứng dụng meowassistan'
+      }),
+    );
+    Future<void> _launchUrl(Uri url) async {
       if (!await launchUrl(
         url,
-        mode: LaunchMode.platformDefault,
-        webViewConfiguration: const WebViewConfiguration(enableJavaScript: true),
       )) {
         throw 'Could not launch $url';
       }
     }
+
+    Future<void> _launchInBrowser(Uri url) async {
+      if (!await launchUrl(url,
+          mode: LaunchMode.externalNonBrowserApplication
+      )) throw 'Could not launch $url';
+    }
+
 
     // TODO: implement build
     // throw UnimplementedError();
@@ -25,139 +86,61 @@ class VersionAppScreen extends StatelessWidget{
         ),
         child: SafeArea(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                // Text(
-                //   'Setting',
-                //   style: TextStyle(
-                //     color: Colors.white,
-                //     fontSize: 20,
-                //   ),
-                // ),
-                Container(
-                  width: double.infinity,
-                  height: 70,
-                  decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          //                   <--- left side
-                          color: Colors.white,
-                          width: 1.0,
+            child: Container(
+              child: BlurryContainer(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'phien_ban_app',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ).tr(namedArgs: {'nameapp': _packageInfo.appName, 'pb': _packageInfo.version, }),
+                    SizedBox(height: 20,),
+                    Text(
+                      'lienhe_baoloi',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ).tr(),
+                    SizedBox(height: 10,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: (){
+                            _launchUrl(emailLaunchUri);
+                          },
+                          child: Icon(Icons.mail,size: 40,color: Colors.white,),
                         ),
-                        bottom: BorderSide(
-                          //                   <--- left side
-                          color: Colors.white,
-                          width: 1.0,
+                        InkWell(
+                          onTap: (){
+                            _launchInBrowser(Uri.parse('https://www.facebook.com/vqhapps'));
+                          },
+                          child: Icon(Icons.facebook,size: 40,color: Colors.white,),
                         ),
-                      )),
-                  child: Center(
-                    child: InkWell(
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Sẽ sớm ra mắt"),
-                        ));
-                      },
-                      child: const Text("Chỉnh sửa thông tin",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),),
-                    ),
-                  ),
+                        InkWell(
+                          onTap: (){
+                            _launchInBrowser(Uri.parse('https://www.instagram.com/vqh.26/'));
+                          },
+                          child: Icon(Ionicons.logo_instagram,size: 40,color: Colors.white,),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 70,
-                  decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          //                   <--- left side
-                          color: Colors.white,
-                          width: 1.0,
-                        ),
-                        bottom: BorderSide(
-                          //                   <--- left side
-                          color: Colors.white,
-                          width: 1.0,
-                        ),
-                      )),
-                  child: Center(
-                    child: InkWell(
-                      onTap: () async {
-                        const url = 'https://chinhsachbaomatvqhapp.blogspot.com/';
-                        _launchInBrowser(Uri.parse(url));
-                      },
-                      child: const Text("Chính Sách Bảo Mật",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 70,
-                  decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          //                   <--- left side
-                          color: Colors.white,
-                          width: 1.0,
-                        ),
-                        bottom: BorderSide(
-                          //                   <--- left side
-                          color: Colors.white,
-                          width: 1.0,
-                        ),
-                      )),
-                  child: Center(
-                    child: InkWell(
-                      onTap: () async {
-                        const url = 'https://dieukhoanvqhapps.blogspot.com/';
-                        _launchInBrowser(Uri.parse(url));
-                      },
-                      child: const Text("Điều Khoản Sử Dụng",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 70,
-                  decoration: const BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          //                   <--- left side
-                          color: Colors.white,
-                          width: 1.0,
-                        ),
-                        bottom: BorderSide(
-                          //                   <--- left side
-                          color: Colors.white,
-                          width: 1.0,
-                        ),
-                      )),
-                  child: Center(
-                    child: InkWell(
-                      onTap: () async {
-                        const url = 'https://vqhapps.blogspot.com/';
-                        _launchInBrowser(Uri.parse(url));
-                      },
-                      child: const Text("Website Nhà Phát Triển",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),),
-                    ),
-                  ),
-                )
-              ],
+                blur: 5,
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height * 0.8,
+                elevation: 0,
+                color: Colors.black12,
+                padding: const EdgeInsets.all(8),
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+              ),
             ),
           ),
         ),

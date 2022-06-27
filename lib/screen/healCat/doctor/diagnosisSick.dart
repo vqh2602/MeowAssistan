@@ -11,20 +11,20 @@ import '../../../data/dataSick.dart';
 
 class DiagnosisSick extends StatelessWidget{
   bool vip;
-  List<int> lstTrieuchung;
-  DiagnosisSick({required this.vip,required this.lstTrieuchung});
+  List<int>? lstTrieuchung;
+  DiagnosisSick({required this.vip, this.lstTrieuchung});
 
 
   @override
   Widget build(BuildContext context) {
 
-    List<PhanTram> lstPT = getBenhTatinTrieuChung(lstTrieuchung);
+    List<PhanTram> lstPT = getBenhTatinTrieuChung(lstTrieuchung!);
 
     // TODO: implement build
     // throw UnimplementedError();
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: lstPT.length>0?Container(
           child: ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
@@ -75,8 +75,8 @@ class DiagnosisSick extends StatelessWidget{
                               animation: true,
                               lineHeight: 30.0,
                               animationDuration: 2500,
-                              percent: lstPT[index].phantramtrung/ lstTrieuchung.length,
-                              center: Text('trung_khop').tr(namedArgs: {'style':'${(lstPT[index].phantramtrung*100 / lstTrieuchung.length).toStringAsFixed(2)}'}),
+                              percent: lstPT[index].phantramtrung/ lstTrieuchung!.length,
+                              center: Text('trung_khop').tr(namedArgs: {'style':'${(lstPT[index].phantramtrung*100 / lstTrieuchung!.length).toStringAsFixed(2)}'}),
                               barRadius: const Radius.circular(16),
                               backgroundColor: colorDFDFDF(),
                               progressColor: colorPinkFf758c(),
@@ -89,7 +89,7 @@ class DiagnosisSick extends StatelessWidget{
                 );
 
               }),
-        ),
+        ):Text('Chưa có triệu chứng nào'),
       ),
     );
   }

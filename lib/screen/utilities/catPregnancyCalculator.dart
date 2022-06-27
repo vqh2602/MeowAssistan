@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -8,6 +9,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Color/colors.dart';
+import '../../admod/admod.dart';
 
 class CatPregnancyCalculator extends StatefulWidget {
   const CatPregnancyCalculator({Key? key}) : super(key: key);
@@ -67,12 +69,12 @@ class _MyCatPregnancyCalculator extends State<CatPregnancyCalculator> {
                           color: colorPinkFf758c(),
                           borderRadius: BorderRadius.circular(50)),
                       child: const Text(
-                        'Ngày giao phối',
+                        'day_giao_phoi',
                         style: TextStyle(
                             fontSize: 17,
                             fontFamily: 'Inter',
                             color: Colors.white),
-                      ),
+                      ).tr(),
                     ),
                     Container(
                       width: double.infinity,
@@ -111,6 +113,7 @@ class _MyCatPregnancyCalculator extends State<CatPregnancyCalculator> {
                           )),
                     ),
                     IconButton(onPressed: (){
+                      showInterstitialAd();
                       alertCatYears(selectedDate!);
                     }, icon: Icon(Icons.calculate_outlined,color: colorPinkFf758c(),), iconSize: 40,)
                   ],
@@ -126,7 +129,10 @@ class _MyCatPregnancyCalculator extends State<CatPregnancyCalculator> {
 
   void alertCatYears(DateTime dateTime){
 
-
+String ngaygiaophoi = 'day_giao_phoi'.tr(),
+    sinhdukien = 'day_sinh_dukien'.tr(),
+    sinhsom = 'day_sinh_som'.tr(),
+    sinhmuon = 'day_sinh_muon'.tr();
 
     Alert(
       context: context,
@@ -136,16 +142,16 @@ class _MyCatPregnancyCalculator extends State<CatPregnancyCalculator> {
           child:
           RichText(
             text: TextSpan(
-              text: 'Ngày giao phối: ',
+              text: ngaygiaophoi,
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               children: <TextSpan>[
                 TextSpan(text: DateFormat('dd/MM/yyyy').format(dateTime), 
                     style: TextStyle(fontWeight: FontWeight.bold, color: colorPinkFf758c())),
-                TextSpan(text: '\nNgày sinh dự kiến: ', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
+                TextSpan(text: sinhdukien, style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
                 TextSpan(text: DateFormat('dd/MM/yyyy').format(dateTime.add(const Duration(days: 63))), style: TextStyle(fontWeight: FontWeight.bold, color: colorPinkFf758c())),
-                const TextSpan(text: '\nNgày sinh sớm nhất: ', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
+                TextSpan(text: sinhsom, style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
                 TextSpan(text: DateFormat('dd/MM/yyyy').format(dateTime.add(const Duration(days: 58))), style: TextStyle(fontWeight: FontWeight.bold, color: colorPinkFf758c())),
-                const TextSpan(text: '\nNgày sinh muộn nhất: ', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
+                TextSpan(text: sinhmuon, style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
                 TextSpan(text: DateFormat('dd/MM/yyyy').format(dateTime.add(const Duration(days: 71))), style: TextStyle(fontWeight: FontWeight.bold, color: colorPinkFf758c())),
 
               ],
@@ -168,27 +174,19 @@ class _MyCatPregnancyCalculator extends State<CatPregnancyCalculator> {
   void alertInfo() {
     Alert(
       context: context,
-      title: 'Thông tin',
+      title: 'info'.tr(),
       image: Lottie.asset('acssets/iconAnimation/search.json'),
       content: Container(
           child: Column(
             children: [
               Text(
-                'Làm thế nào để biết con mèo của bạn như sao?',
+                'mang_thai',
                 style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              ).tr(),
               Text(
-                'Có nhiều cách để đánh giá thời gian mang thai của mèo - cách dễ nhất là đến bác sĩ thú y của bạn, vì việc mở rộng bụng mèo của bạn cũng có thể là dấu hiệu của một căn bệnh nghiêm trọng.'
-                    '\nChúng ta hãy xem các phương pháp gia đình khác mà chúng ta có thể sử dụng bằng cách quan sát việc mang thai của mèo mỗi ngày:'
-                    '\n 1, Đánh giá núm vú của mèo'
-                    '\n   Núm vú của mèo sẽ bị sưng và chuyển sang màu đỏ / tối trong vòng 15-18 ngày sau khi mang thai.'
-                    '\n 2, Bụng mở rộng'
-                    '\n   Bụng của một bà mẹ tương lai mở rộng sau 2-3 tuần của thai kỳ. Em bé mèo của bạn cũng sẽ bắt đầu tăng cân - thậm chí lên đến 2 kg thêm (4,4 lb)!'
-                    '\n 3, Thiếu nhiệt'
-                    '\n   Một con mèo cái khỏe mạnh có sức nóng (thời gian tăng khả năng sinh sản) cứ sau 2-3 tuần. Nếu bạn biết hành vi của con mèo của bạn khá tốt, bạn có thể đếm có bao nhiêu nhiệt mà nó đã bỏ lỡ.'
-                    '',
+                'mang_thai_des',
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
-              ),
+              ).tr(),
             ],
           )),
       buttons: [

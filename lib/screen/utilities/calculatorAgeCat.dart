@@ -9,6 +9,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Color/colors.dart';
+import '../../admod/admod.dart';
 
 class CalculatorAgeCat extends StatefulWidget {
   const CalculatorAgeCat({Key? key}) : super(key: key);
@@ -110,6 +111,7 @@ class _MyCalculatorAgeCat extends State<CalculatorAgeCat> {
                           )),
                     ),
                     IconButton(onPressed: (){
+                      showInterstitialAd();
                       alertCatYears(selectedDate!);
                     }, icon: Icon(Icons.calculate_outlined,color: colorPinkFf758c(),), iconSize: 40,)
                   ],

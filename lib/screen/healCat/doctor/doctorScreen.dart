@@ -7,6 +7,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../Color/colors.dart';
+import '../../../admod/admod.dart';
 import '../../../data/dataCatDoctor.dart';
 import 'diagnosisSick.dart';
 
@@ -60,6 +61,7 @@ class _MyDoctorScreen extends State<DoctorScreen> {
     return new Scaffold(
         floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          showInterstitialAd();
           if(widget.vip){
             Navigator.push(
                 context,

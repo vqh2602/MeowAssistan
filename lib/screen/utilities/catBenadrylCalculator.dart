@@ -9,6 +9,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Color/colors.dart';
+import '../../admod/admod.dart';
 
 class CatBenadrylCalculator extends StatefulWidget {
   const CatBenadrylCalculator({Key? key}) : super(key: key);
@@ -74,12 +75,12 @@ class _MyCatBenadrylCalculator extends State<CatBenadrylCalculator> {
                           color: colorPinkFf758c(),
                           borderRadius: BorderRadius.circular(50)),
                       child: const Text(
-                        'Cân nặng',
+                        'can_nang',
                         style: TextStyle(
                             fontSize: 17,
                             fontFamily: 'Inter',
                             color: Colors.white),
-                      ),
+                      ).tr(),
                     ),
                     Container(
                       width: double.infinity,
@@ -96,14 +97,15 @@ class _MyCatBenadrylCalculator extends State<CatBenadrylCalculator> {
                         controller: textEditingControlleNumber,
                         keyboardType: TextInputType.number,
                         autocorrect: false,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           border: UnderlineInputBorder(),
-                          labelText: 'Nhập cân nặng (kg)',
+                          labelText: 'nhap_can_nang'.tr(),
                         ),
                       ),
                     ),
                     IconButton(
                       onPressed: () {
+                        showInterstitialAd();
                         alertCatYears(
                             double.parse(textEditingControlleNumber.text));
                       },
@@ -134,23 +136,23 @@ class _MyCatBenadrylCalculator extends State<CatBenadrylCalculator> {
       content: Container(
           child: RichText(
         text: TextSpan(
-          text: 'Với nồng độ:  ',
+          text: 'nong_do'.tr(),
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           children: <TextSpan>[
             TextSpan(
                 text: '${ketQuamg.toStringAsFixed(2)} mg',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: colorPinkFf758c())),
-            const TextSpan(
-                text: ' hoặc ',
+            TextSpan(
+                text: 'hoac'.tr(),
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black)),
             TextSpan(
                 text: '${ketQuaml.toStringAsFixed(2)} ml',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: colorPinkFf758c())),
-            const TextSpan(
-                text: ' an toàn với mèo của bạn',
+            TextSpan(
+                text: 'an_toan'.tr(),
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.black)),
             // TextSpan(text: getDays(dateTime, false), style: TextStyle(fontWeight: FontWeight.bold, color: colorPinkFf758c())),
