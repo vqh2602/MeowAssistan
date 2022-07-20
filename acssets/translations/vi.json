@@ -7,8 +7,8 @@
   "cam_xuc_des": "phát những âm thanh mèo",
   "title_phien_dich": "Phiên dịch",
   "phien_dich_des": "phiên dịch âm thanh của bạn thành tiếng mèo kêu",
-  "BMI_title": "BMI",
-  "BMI_des": "tính chỉ số BMI",
+  "BMI_title": "Quản lí mèo",
+  "BMI_des": "quản lí tất cả mèo",
   "bac_si_title": "Bác sĩ",
   "bac_si_des": "phán đoán bệnh",
   "so_sk_title": "Sổ sức khoẻ",
@@ -105,7 +105,7 @@
   "day_giao_phoi": "Ngày giao phối: ",
   "day_sinh_dukien": "\nNgày sinh dự kiến: ",
   "day_sinh_som": "\nNgày sinh sớm nhất: ",
-  "day_sinh_muon": "Ngày sinh muộn nhất: ",
+  "day_sinh_muon": "\nNgày sinh muộn nhất: ",
   "tien_ich_title_m": "Tiện ích meow",
   "danh_sach_tiem_ich": "Danh sách các tiện ích",
   "can_nang": "Cân nặng",
@@ -136,11 +136,5 @@
   "thong_tin_app": "Thông Tin Ứng Dụng",
   "phien_ban_app": "Tên ứng dụng: {nameapp}\n ------ \nPhiên bản: {pb} \n ------ \nLời nhắn: Ứng dụng là một sản phẩm nhỏ của tớ trong quá trình học tập và phát triển hướng tới mục đích cộng đồng. Tuy nhiên trong quá trình phát triển ứng dụng sẽ còn một số vấn đề, lỗi vặt. Và mình vẫn cố gắng sửa chữa, khắc phục. Cảm ơn bạn đã sử dụng dứng dụng này!",
   "lienhe_baoloi": "Liên hệ & báo lỗi"
-
-
-
-
-
-
 
 }

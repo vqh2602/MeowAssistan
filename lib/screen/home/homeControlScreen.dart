@@ -17,6 +17,8 @@ import 'package:sizer/sizer.dart';
 import '../../admod/admod.dart';
 import '../../events/user_event.dart';
 import '../../repository/userRepository.dart';
+import '../blogPostScreen/blogPostScreenAll.dart';
+import '../blogPostScreen/blogPostScreen_min.dart';
 
 class HomeControlScreen extends StatefulWidget {
   UserRepository userRepository;
@@ -53,29 +55,13 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
     super.initState();
     _userBloc = BlocProvider.of<UserBloc>(context);
     _userBloc.add(GetUser(userRepository: userRepository!));
+    _userBloc.add(getAdLimted(userRepository: userRepository!));
 
     //init ad
     createInterstitialAd();
 
     // ad banner
-    _bannerAd = BannerAd(
-      //ca-app-pub-5964552069889646/5528809996
-      //   adUnitId: BannerAd.testAdUnitId,
-      adUnitId: 'ca-app-pub-5964552069889646/5528809996',
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        onAdLoaded: (Ad ad) {
-          print('$BannerAd loaded.');
-        },
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          print('$BannerAd failedToLoad: $error');
-        },
-        onAdOpened: (Ad ad) => print('$BannerAd onAdOpened.'),
-        onAdClosed: (Ad ad) => print('$BannerAd onAdClosed.'),
-        // onApplicationExit: (Ad ad) => print('$BannerAd onApplicationExit.'),
-      ),
-    );
+    _bannerAd =  bannerAd();
 
     _bannerAd.load();
     //showInterstitialAd();
@@ -94,20 +80,26 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      'xin_chao',
-                      style: const TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Inter'),
-                    ).tr(namedArgs: {'name': '$name'}),
-                    const CircleAvatar(
-                      radius: 40, // Image radius
-                      backgroundImage:
-                          AssetImage('acssets/images/cats/catAvatar.jpg'),
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        'xin_chao',
+                        style: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Inter'),
+                      ).tr(namedArgs: {'name': '$name'}),
                     ),
+                    Expanded(
+                      flex: 1,
+                      child: const CircleAvatar(
+                        radius: 40, // Image radius
+                        backgroundImage:
+                        AssetImage('acssets/images/cats/catAvatar.jpg',),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -298,7 +290,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                       Image.asset('acssets/images/cats/homeCatBMI.png'),
                       InkWell(
                         onTap: () {
-                          showInterstitialAd();
+                       //   showInterstitialAd();
                           Navigator.push(
                               context,
                               PageTransition(
@@ -349,7 +341,7 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
 
                       InkWell(
                         onTap: (){
-                          showInterstitialAd();
+                         // showInterstitialAd();
                           Navigator.push(
                               context,
                               PageTransition(
@@ -521,6 +513,46 @@ class _MyHomeControlScreen extends State<HomeControlScreen> {
                       ),
                     ),
                   )
+                ],
+              ),
+            ),
+
+            // thong tin
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Information Meow',
+                            style: styleTitle(),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: BlogPostScreenAll()));
+                            },
+                            child: Text(
+                              'more >>',
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  color: colorPinkFf758c()),
+                            ),
+                          )
+                        ],
+                      )),
+                  const Padding(padding: EdgeInsets.all(10)),
+                  BlogPostScreen(),
+                  const Padding(padding: EdgeInsets.all(10)),
                 ],
               ),
             ),

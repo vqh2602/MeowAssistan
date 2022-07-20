@@ -9,6 +9,7 @@ import '../../bloc/cat_bloc.dart';
 import 'alert_dialog_refactor.dart';
 import 'bmi/bmiScreen.dart';
 import 'edit_note.dart';
+import 'healKitCatScreen.dart';
 import 'note_card.dart';
 
 class CatScreen extends StatelessWidget {
@@ -106,7 +107,7 @@ class NoteGrid extends StatelessWidget {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) {
-                              return BMIScreen(
+                              return HealKitCatScreen(
                                 id: note.id!,
                               );
                             }));

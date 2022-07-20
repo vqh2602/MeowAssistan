@@ -32,12 +32,48 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
   late UserBloc _userBloc;
   StreamController<int> selected = StreamController<int>();
   int index = -1;
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  Future<void> setAdToday(String email) async {
+    db.collection("users").where("email", isEqualTo: email).get().then(
+          (res) async {
+        final docRef = db.collection("users").doc(email);
+        await docRef.get().then(
+              (DocumentSnapshot doc) async {
+            final data = doc.data() as Map<String, dynamic>;
+            // ...
+            int dataAd = data["adLimited"];
+            print('checkadlimited: ${dataAd}');
+            final difference =
+            DateTime.now().difference(data["adToday"].toDate());
+            // print(difference.inDays);
+
+            // cạp nhat ad
+            final washingtonRef = db.collection("users").doc(email);
+
+            washingtonRef.update({"adLimited": dataAd + 1}).then(
+                    (value) =>
+                    print("DocumentSnapshot successfully updated catcoin!"),
+                onError: (e) => print("Error updating document $e"));
+
+            _userBloc.add(GetUser(userRepository: userRepository!));
+          },
+          onError: (e) => print("Error getting document: $e"),
+        );
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
+
+// 7416
+  }
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _userBloc = BlocProvider.of<UserBloc>(context);
     _userBloc.add(GetUser(userRepository: userRepository!));
+    _userBloc.add(getAdLimted(userRepository: userRepository!));
     createRewardedAd();
 
     print('init');
@@ -170,6 +206,22 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                 ).tr(),
               ),
             ),
+            Container(
+              child: BlocBuilder<UserBloc, UserState>(
+                  builder: (context, userState) {
+                    if (userState is UserStateSuccess) {
+                      return Text(
+                          'today is spins: ${userState.user.adLimited}/10');
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              colorPinkFf758c(),
+                            )),
+                      );
+                    }
+                  }),
+            ),
             Expanded(
               flex: 1,
               child: (index >= 0)
@@ -261,25 +313,55 @@ class _MyHomeSpinWheel extends State<HomeSpinWheel> {
                           // createInterstitialAd();
                           // showInterstitialAd();
                           //createRewardedAd();
-                          if( showRewardedAd()){
-                            setState(() {
-                              // Here you can write your code for open new view
-                              var rendomval = Fortune.randomInt(0, items.length);
-                              setState(() {
-                                selected.add(rendomval);
-                                Future.delayed(const Duration(milliseconds: 4500),
-                                        () {
-                                      setState(() {
-                                        index = rendomval;
-                                        // addUser();
-                                        printUser(userState.user.email!,items[index] );
-                                      });
-                                    });
-                              });
-                            });
-                          }
-                          else{
-                            print("đong quang cao som");
+                          _userBloc.add(getAdLimted(userRepository: userRepository!));
+                          if (userState.user.adLimited! > 9) {
+
+                              if( showRewardedAd()){
+                                setState(() {
+                                  // Here you can write your code for open new view
+                                  var rendomval = Fortune.randomInt(0, items.length);
+                                  setState(() {
+                                    selected.add(rendomval);
+                                    Future.delayed(const Duration(milliseconds: 4500),
+                                            () {
+                                          setState(() {
+                                            index = rendomval;
+                                            // addUser();
+                                            printUser(userState.user.email!,items[index] );
+                                            setAdToday(userState.user.email!);
+                                          });
+                                        });
+                                  });
+                                });
+                              }
+                              else{
+                                print("đong quang cao som");
+                              }
+
+
+                            // if (showRewardedAd()) {
+                            //   setState(() {
+                            //     // Here you can write your code for open new view
+                            //     var rendomval =
+                            //     Fortune.randomInt(0, items.length);
+                            //     setState(() {
+                            //       selected.add(rendomval);
+                            //       Future.delayed(
+                            //           const Duration(milliseconds: 4500), () {
+                            //         setState(() {
+                            //           index = rendomval;
+                            //           setAdToday(userState.user.email!);
+                            //           // addUser();
+                            //           printUser(
+                            //               userState.user.email!, items[index]);
+                            //         });
+                            //       });
+                            //     });
+                            //   });
+                            // }
+                          }else{
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text('advertising limit. come back in 24 hours')));
                           }
                         },
                         child: Center(

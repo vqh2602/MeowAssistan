@@ -81,7 +81,7 @@ class UtilitiesScreen extends StatelessWidget {
                         width: double.infinity,
                         child: InkWell(
                           onTap: () {
-                            showInterstitialAd();
+                            //showInterstitialAd();
                             pushPage(index, context);
                             // Navigator.push(context,
                             //     MaterialPageRoute(builder: (BuildContext context) {

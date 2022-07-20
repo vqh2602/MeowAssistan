@@ -29,12 +29,12 @@ class _MyCatCalorieCalculator extends State<CatCalorieCalculator> {
   TextEditingController textEditingControlleNumber = TextEditingController();
   String dropdownImage = 'calo1'.tr();
   List<String> lstCatInfo = [
-'calo1',
-    'calo2',
-    'calo3',
-    'calo4',
-    'calo5',
-    'calo6'
+'calo1'.tr(),
+    'calo2'.tr(),
+    'calo3'.tr(),
+    'calo4'.tr(),
+    'calo5'.tr(),
+    'calo6'.tr()
   ];
 
   @override

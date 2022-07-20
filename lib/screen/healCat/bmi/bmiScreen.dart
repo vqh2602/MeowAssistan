@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../../Color/colors.dart';
+import '../../../admod/admod.dart';
 import '../../../bloc/bmi_bloc.dart';
 import '../../../events/bmi_event.dart';
 import '../../../states/bmi_state.dart';
@@ -123,6 +124,7 @@ class NoteGrid extends StatelessWidget {
                     width: double.infinity,
                     child: InkWell(
                       onTap: () {
+                        showInterstitialAd();
                         Navigator.push(context,
                             MaterialPageRoute(builder: (BuildContext context) {
                               return CalculateBmiScreen(

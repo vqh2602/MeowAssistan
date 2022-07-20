@@ -29,45 +29,48 @@ class InfoApp extends StatelessWidget {
         required String url,
         required bool showLog,
         required bool launch}) {
-      return Container(
-        width: double.infinity,
-        height: 70,
-        decoration: const BoxDecoration(
-            border: Border(
-          top: BorderSide(
-            //                   <--- left side
-            color: Colors.white,
-            width: 1.0,
-          ),
-          bottom: BorderSide(
-            //                   <--- left side
-            color: Colors.white,
-            width: 1.0,
-          ),
-        )),
-        child: Center(
-          child: InkWell(
-            onTap: () {
-              showLog
-                  ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('coming_soon').tr(),
-                    ))
-                  : launch
-                      ? _launchInApp(Uri.parse(url))
-                      : _launchInBrowser(Uri.parse(url));
+      return
+        InkWell(
+          onTap: () {
+            showLog
+                ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('coming_soon').tr(),
+            ))
+                : launch
+                ? _launchInApp(Uri.parse(url))
+                : _launchInBrowser(Uri.parse(url));
 
 
-            },
-            child: Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
+          },
+          child: Container(
+            width: double.infinity,
+            height: 70,
+            decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    //                   <--- left side
+                    color: Colors.white,
+                    width: 1.0,
+                  ),
+                  bottom: BorderSide(
+                    //                   <--- left side
+                    color: Colors.white,
+                    width: 1.0,
+                  ),
+                )),
+            child: Center(
+              child: InkWell(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      );
+        );
     }
 
     // TODO: implement build
@@ -96,24 +99,7 @@ class InfoApp extends StatelessWidget {
                 //   ),
                 // ),
                 containerWid(title: 'sua_tt'.tr(), url: '', showLog: true, launch: true),
-            Container(
-              width: double.infinity,
-              height: 70,
-              decoration: const BoxDecoration(
-                  border: Border(
-                    top: BorderSide(
-                      //                   <--- left side
-                      color: Colors.white,
-                      width: 1.0,
-                    ),
-                    bottom: BorderSide(
-                      //                   <--- left side
-                      color: Colors.white,
-                      width: 1.0,
-                    ),
-                  )),
-              child: Center(
-                child: InkWell(
+                InkWell(
                   onTap: () {
                     Navigator.push(
                         context,
@@ -121,18 +107,37 @@ class InfoApp extends StatelessWidget {
                             type: PageTransitionType.bottomToTop,
                             child: VersionAppScreen()));
                   },
-                  child: Text(
-                    'thong_tin_app',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
+                  child: Container(
+                    width: double.infinity,
+                    height: 70,
+                    decoration: const BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            //                   <--- left side
+                            color: Colors.white,
+                            width: 1.0,
+                          ),
+                          bottom: BorderSide(
+                            //                   <--- left side
+                            color: Colors.white,
+                            width: 1.0,
+                          ),
+                        )),
+                    child: Center(
+                      child: InkWell(
+                        child: Text(
+                          'thong_tin_app',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ).tr(),
+                      ),
                     ),
-                  ).tr(),
+                  ),
                 ),
-              ),
-            ),
                 containerWid(title: 'csbm'.tr(), url: 'https://chinhsachbaomatvqhapp.blogspot.com/', showLog: false, launch: true),
-                containerWid(title: 'dieu_khoan'.tr(), url: 'https://dieukhoanvqhapps.blogspot.com/', showLog: true, launch: true),
+                containerWid(title: 'dieu_khoan'.tr(), url: 'https://dieukhoanvqhapps.blogspot.com/', showLog: false, launch: true),
                 containerWid(title: 'web_dev'.tr(), url: 'https://vqhapps.blogspot.com/', showLog: false, launch: false),
               ],
             ),

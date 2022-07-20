@@ -9,29 +9,32 @@ import 'package:meowassistan/bloc/cat_bloc.dart';
 import 'package:meowassistan/bloc/login_bloc.dart';
 import 'package:meowassistan/bloc/user_bloc.dart';
 import 'package:meowassistan/models/hive_Models/database/cat_db.dart';
+import 'package:meowassistan/repository/blogPostRepository.dart';
 import 'package:meowassistan/repository/userRepository.dart';
-import 'package:meowassistan/screen/healCat/catScreen.dart';
-import 'package:meowassistan/screen/healCat/doctor/doctorScreen.dart';
-import 'package:meowassistan/screen/infoApp/infoApp.dart';
-import 'package:meowassistan/screen/infoApp/version_App_Screen.dart';
-
 import 'package:meowassistan/screen/loginSignup/loginScreen.dart';
 import 'package:meowassistan/screen/loginSignup/registerScreen.dart';
 import 'package:meowassistan/screen/splash/splashScreen.dart';
-import 'package:meowassistan/screen/utilities/utilitiesScreen.dart';
 import 'package:meowassistan/states/authencation_state.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 
+import 'bloc/blogPost_bloc.dart';
 import 'bloc/bmi_bloc.dart';
 import 'bloc/register_bloc.dart';
 import 'bloc/simple_bloc_observer.dart';
+import 'bloc/vaccine_bloc.dart';
+import 'bloc/worm_bloc.dart';
 import 'events/authencation_event.dart';
 import 'events/cat_event.dart';
 import 'firebase_options.dart';
 import 'models/hive_Models/bmi.dart';
 import 'models/hive_Models/cats.dart';
 import 'models/hive_Models/database/bmi_db.dart';
+import 'models/hive_Models/database/vaccine_db.dart';
+import 'models/hive_Models/database/worm_db.dart';
+import 'models/hive_Models/vaccine.dart';
+import 'models/hive_Models/worm.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +44,10 @@ Future<void> main() async {
   await Hive.openBox<Cat>("Catdb");
   Hive.registerAdapter<BMI>(BMIAdapter());
   await Hive.openBox<BMI>("BMIdb");
+  Hive.registerAdapter<Vaccine>(VaccineAdapter());
+  await Hive.openBox<Vaccine>("Vaccinedb");
+  Hive.registerAdapter<Worm>(WormAdapter());
+  await Hive.openBox<Worm>("Wormdb");
 
   MobileAds.instance.initialize();
   await Firebase.initializeApp(
@@ -52,6 +59,9 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   //info app
 
+  // BLOGPOST
+  final BlogPostRepositories blogPostRepositories =
+  BlogPostRepositories(httpClient: http.Client());
 
   final UserRepository _userRepository = UserRepository();
 
@@ -81,6 +91,15 @@ Future<void> main() async {
                   ),
                   BlocProvider<BMIBloc>(
                     create: (BuildContext context) => BMIBloc(bmiDatabase:BMIDatabase()),
+                  ),
+                  BlocProvider<VaccineBloc>(
+                    create: (BuildContext context) => VaccineBloc(bmiDatabase:VaccineDatabase()),
+                  ),
+                  BlocProvider<WormBloc>(
+                    create: (BuildContext context) => WormBloc(bmiDatabase:WormDatabase()),
+                  ),
+                  BlocProvider<BlogPostBloc>(
+                    create: (BuildContext context) => BlogPostBloc(blogPostRepositories: blogPostRepositories),
                   ),
                 ],
                 child: MyApp(userRepository: _userRepository,),

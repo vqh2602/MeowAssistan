@@ -520,9 +520,12 @@ class _MyAccountScreen extends State<AccountScreen> {
               context
                   .read<UserBloc>()
                   .add(GetUser(userRepository: userRepository!));
+
               Future.delayed(const Duration(seconds: 1), () {
                 Navigator.pop(context);
-                 setLoadding();
+                setState(() {
+                  setLoadding();
+                });
               });
             } else {
               Navigator.pop(context);
@@ -576,8 +579,12 @@ class _MyAccountScreen extends State<AccountScreen> {
   }
 
   void setLoadding() {
+    context
+        .read<UserBloc>()
+        .add(GetUser(userRepository: userRepository!));
     setState(() {
       checkBuy = false;
+
     });
     Future.delayed(const Duration(seconds: 3), () {
       setState(() {

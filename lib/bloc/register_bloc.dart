@@ -49,8 +49,10 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>{
       final user = <String, dynamic>{
         "displayName": event.displayName,
         "email": event.email,
-        "catcoin": 0,
-        "expirationDate": DateTime.now()
+        "catcoin": 1000,
+        "expirationDate": DateTime.now(),
+        "adToday": DateTime.now(),
+        "adLimited": 0,
       };
       // Add a new document with a generated ID
       // db.collection("users").add(user).then((DocumentReference doc) =>

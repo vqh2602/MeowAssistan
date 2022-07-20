@@ -26,7 +26,7 @@ class _MySplashScreen extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     // _userBloc = BlocProvider.of<UserBloc>(context);
-    Future.delayed(const Duration(seconds: 5),(){
+    Future.delayed(const Duration(seconds: 3),(){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => HomeScreen(userRepository: widget.userRepository,)));
     });
   }

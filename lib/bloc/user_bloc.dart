@@ -14,6 +14,7 @@ class UserBloc extends Bloc<UserEvent,UserState>{
   UserBloc({this.userRepository}) : super(UserStateInitial())
   {
     on<GetUser>(_onGetUser);
+    on<getAdLimted>(_onGetAdLimited);
   }
 
 void _onGetUser(
@@ -44,7 +45,7 @@ void _onGetUser(
                   (DocumentSnapshot doc) async {
                 final data = doc.data() as Map<String, dynamic>;
                 // ...
-          userCustom = UserCustom(displayName: data["displayName"], email: user.email,catcoin: data["catcoin"], expirationDate: data["expirationDate"].toDate());
+          userCustom = UserCustom(displayName: data["displayName"], email: user.email,catcoin: data["catcoin"], expirationDate: data["expirationDate"].toDate(),adToday: data["adToday"].toDate(), adLimited: data["adLimited"]);
                         print("in customusser: ${userCustom.displayName}");
                         await Future.delayed(const Duration(seconds: 1));
                         emit(UserStateSuccess(user: userCustom));
@@ -82,3 +83,43 @@ void _onGetUser(
   }
 }
   }
+
+
+void _onGetAdLimited(getAdLimted event, Emitter emit) async{
+  emit(UserStateInitial());
+  UserCustom userCustom;
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  User user = await event.userRepository.getUser();
+  db.collection("users").where("email", isEqualTo: user.email).get().then(
+        (res) async {
+
+
+      final docRef =db.collection("users").doc(user.email);
+      await docRef.get().then(
+            (DocumentSnapshot doc) async {
+          final data = doc.data() as Map<String, dynamic>;
+          // ...
+          final difference = DateTime.now().difference(await data["adToday"].toDate());
+          // print(difference.inDays);
+          if(difference.inHours>23){
+            // cạp nhat ad
+            final washingtonRef = db.collection("users").doc(user.email);
+            washingtonRef.update({"adToday": DateTime.now()}).then(
+                    (value) => print("DocumentSnapshot successfully updated catcoin!"),
+                onError: (e) => print("Error updating document $e"));
+            washingtonRef.update({"adLimited": 0}).then(
+                    (value) => print("DocumentSnapshot successfully updated catcoin!"),
+                onError: (e) => print("Error updating document $e"));
+
+
+
+          }
+
+
+        },
+        onError: (e) => print("Error getting document: $e"),
+      );
+    },
+    onError: (e) => print("Error completing: $e"),
+  );
+}

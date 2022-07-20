@@ -12,3 +12,8 @@ class GetUser extends UserEvent{
   // final User user;
   GetUser({ required this.userRepository});
 }
+class getAdLimted extends UserEvent{
+  UserRepository userRepository;
+  getAdLimted({required this.userRepository});
+}
+

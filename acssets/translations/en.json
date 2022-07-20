@@ -1,6 +1,6 @@
 {
-  "BMI_des": "calculate BMI",
-  "BMI_title": "BMI",
+  "BMI_title": "Cat management",
+  "BMI_des": "manage all cats",
   "age": "age",
   "alert_logout": "Do you want to sign out?",
   "bac_si_des": "diagnose disease",
@@ -104,7 +104,7 @@
   "day_giao_phoi": "Delivery date: ",
   "day_sinh_dukien": "\nExpected date of birth: ",
   "day_sinh_som": "\nEarliest date of birth: ",
-  "day_sinh_muon": "Last date of birth: ",
+  "day_sinh_muon": "\nLast date of birth: ",
   "tien_ich_title_m": "Meow utility",
   "danh_sach_tiem_ich": "List of utilities",
   "can_nang": "Weight",

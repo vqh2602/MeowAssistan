@@ -25,7 +25,26 @@ int numRewardedInterstitialLoadAttempts = 0;
 
 
 
-
+BannerAd bannerAd(){
+  return BannerAd(
+    //ca-app-pub-5964552069889646/5528809996
+       adUnitId: BannerAd.testAdUnitId,
+    //adUnitId: 'ca-app-pub-5964552069889646/5528809996',
+    request: const AdRequest(),
+    size: AdSize.banner,
+    listener: BannerAdListener(
+      onAdLoaded: (Ad ad) {
+        print('$BannerAd loaded.');
+      },
+      onAdFailedToLoad: (Ad ad, LoadAdError error) {
+        print('$BannerAd failedToLoad: $error');
+      },
+      onAdOpened: (Ad ad) => print('$BannerAd onAdOpened.'),
+      onAdClosed: (Ad ad) => print('$BannerAd onAdClosed.'),
+      // onApplicationExit: (Ad ad) => print('$BannerAd onApplicationExit.'),
+    ),
+  );
+}
 
 
 void createInterstitialAd() {
@@ -85,12 +104,12 @@ void createRewardedAd() {
   RewardedAd.load(
     //ca-app-pub-5964552069889646/6710029729
   //  test
-  //     adUnitId: Platform.isAndroid
-  //         ? 'ca-app-pub-3940256099942544/5224354917'
-  //         : 'ca-app-pub-3940256099942544/1712485313',
-    adUnitId: Platform.isAndroid
-        ? 'ca-app-pub-5964552069889646/6710029729'
-        : 'ca-app-pub-3940256099942544/1712485313',
+      adUnitId: Platform.isAndroid
+          ? 'ca-app-pub-3940256099942544/5224354917'
+          : 'ca-app-pub-3940256099942544/1712485313',
+  //   adUnitId: Platform.isAndroid
+  //       ? 'ca-app-pub-5964552069889646/6710029729'
+  //       : 'ca-app-pub-3940256099942544/1712485313',
       request: request,
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (RewardedAd ad) {
